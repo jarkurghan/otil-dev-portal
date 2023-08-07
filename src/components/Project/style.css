@@ -1,0 +1,66 @@
+.Project {
+  margin-top: 40px;
+  padding: 20px;
+}
+.addProject {
+  display: flex;
+  justify-content: flex-end;
+}
+.left_right {
+  display: flex !important;
+  justify-content: space-between !important;
+}
+@media only screen and (max-width: 600px) {
+  .addProjectModal {
+    width: 90% !important;
+  }
+}
+.right_btn {
+  margin-top: 20px;
+  text-align: right;
+}
+.marginBottom {
+  margin-bottom: 10px !important;
+}
+.tabs_box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.tabs_box_item {
+  margin-top: 10px;
+  margin-left: 10px;
+  align-self: flex-start;
+  cursor: pointer;
+}
+.ArrowBackIcon_btn {
+  margin-left: 20px !important;
+}
+.css-1h9z7r5-MuiButtonBase-root-MuiTab-root {
+  font-size: 12px !important;
+}
+@media only screen and (max-width: 400px) {
+  .MuiTabs-flexContainer css-heg063-MuiTabs-flexContainer {
+    overflow-x: scroll !important;
+  }
+}
+.history {
+  height: 735px !important;
+  overflow-y: auto;
+  border-radius: 10px;
+}
+.history span {
+  color: #6a6a6a;
+  font-size: 14px;
+}
+.history_list {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgb(250, 254, 255);
+}
+.avatar_name_wrapper{
+  display: flex;
+  align-items: center;
+}
