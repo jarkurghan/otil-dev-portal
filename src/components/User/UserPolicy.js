@@ -3,8 +3,11 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import LUCheck from "../../tools/LUCheck";
 import LUSwitch from "../../tools/LUSwitch/LUSwitch";
+import LUPopup from "../../tools/LUPopup/LUPopup";
 
 export default function UserPolicies() {
+  const [progress, setProgress] = useState(false);
+  const [rank, setRank] = useState({});
   const [rows, setRows] = useState([]);
   const [actions, setActions] = useState([]);
   const [data, setData] = useState([]);
@@ -18,7 +21,7 @@ export default function UserPolicies() {
 
   const getUserPolicies = async () => {
     await axios
-      .get(`${process.env.REACT_APP_URL}/otil/v1/api/user/actions`, {
+      .get(`${process.env.REACT_APP_URL}/otil/v1/api/user/action`, {
         headers: {
           Authorization: sessionStorage.getItem("token"),
         },
@@ -42,7 +45,7 @@ export default function UserPolicies() {
   };
   const getActions = async () => {
     await axios
-      .get(`${process.env.REACT_APP_URL}/otil/v1/api/user/action2`, {
+      .get(`${process.env.REACT_APP_URL}/otil/v1/api/user/actions`, {
         headers: {
           Authorization: sessionStorage.getItem("token"),
         },
@@ -69,20 +72,71 @@ export default function UserPolicies() {
 
   async function submit() {
     setSelect(null);
-    await axios
-      .patch(`${process.env.REACT_APP_URL}/otil/v1/api/user/action`, rows, {
-        headers: {
-          Authorization: sessionStorage.getItem("token"),
-        },
-      })
-      .then(async (res) => {
-        await getUserPolicies();
-        toast.success("Successfully updated!");
-      })
-      .catch((err) => {
-        cancelChange();
-        toast.error("An error occurred");
+    let add = [];
+    let del = [];
+    for (let i = 0; i < data.length; i++) {
+      for (let j = 0; j < actions.length; j++) {
+        if (
+          data[i].actions[actions[j].action] !==
+          rows[i].actions[actions[j].action]
+        ) {
+          if (rows[i].actions[actions[j].action] === true)
+            add.push({
+              user: data[i].id,
+              action: actions[j].id,
+              text: `Adding ${actions[j].description} action to ${rows[i].name}`,
+            });
+          else
+            del.push({
+              user: data[i].id,
+              action: actions[j].id,
+              text: `Removing action ${actions[j].description} from ${rows[i].name}`,
+            });
+        }
+      }
+    }
+    setProgress(true);
+    for (let i = 0; i < add.length; i++) {
+      setRank({
+        text: add[i].text,
+        rank: `${(100 * i) / (del.length + add.length)}%`,
       });
+      delete add[i].text;
+      await axios
+        .post(
+          `${process.env.REACT_APP_URL}/otil/v1/api/user/action/add`,
+          add[i],
+          { headers: { Authorization: sessionStorage.getItem("token") } }
+        )
+        .catch((err) => {
+          console.log(err);
+          toast.error("An error occurred");
+        });
+    }
+    for (let i = 0; i < del.length; i++) {
+      setRank({
+        text: del[i].text,
+        rank: `${(100 * (add.length + i)) / (del.length + add.length)}%`,
+      });
+      delete del[i].text;
+      await axios
+        .delete(`${process.env.REACT_APP_URL}/otil/v1/api/user/action/del`, {
+          data: del[i],
+          headers: { Authorization: sessionStorage.getItem("token") },
+        })
+        .catch((err) => {
+          console.log(err);
+          toast.error("An error occurred");
+        });
+    }
+    setRank({
+      text: `data is being updated`,
+      rank: "100%",
+    });
+    await getUserPolicies();
+    toast.success("Success!");
+    setProgress(false);
+    setRank({});
   }
 
   function cancelChange() {
@@ -101,6 +155,7 @@ export default function UserPolicies() {
 
   return (
     <div className="relative overflow-x-auto sm:rounded-lg">
+      {progress && <LUPopup rank={rank} />}
       {rows.length > 0 && (
         <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400 max-w-6xl">
           <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">

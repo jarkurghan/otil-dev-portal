@@ -1,0 +1,53 @@
+.lu-popup {
+  background-color: rgba(0, 0, 0, 0.25);
+  display: inline-block;
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 5;
+}
+
+.lup-modal {
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 30px;
+  display: inline-block;
+  width: min(100vw, 360px);
+  height: fit-content;
+  transition: 0.15s; /* height o'zgarishi uchun */
+  position: fixed;
+  top: 45%;
+  right: 50%;
+  transform: translate(50%, -50%);
+  opacity: 0;
+  animation: lu-anim 0.4s 1 forwards;
+}
+
+@keyframes lu-anim {
+  to {
+    top: 50%;
+    opacity: 1;
+  }
+}
+
+.lupm-full {
+  margin: 5px 0;
+  height: 10px;
+  width: 100%;
+  border-radius: 5px;
+  border: 2px solid rgba(95, 158, 160, 0.411);
+}
+
+.lupmf-rank {
+  height: 6px;
+  width: var(--rank);
+  border-radius: 5px;
+  background-color: cadetblue;
+  transition: 0.15s;
+}
+
+.lupmf-text {
+  padding-left: 3px;
+}
