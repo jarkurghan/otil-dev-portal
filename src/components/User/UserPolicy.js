@@ -227,7 +227,7 @@ export default function UserPolicies() {
             <tr className="bg-white dark:bg-gray-800 dark:border-gray-700">
               <td className="px-6 p-4"></td>
               {actions.map((e) => (
-                <td className="px-6 p-4"></td>
+                <td className="px-6 p-4" key={e.id}></td>
               ))}
               <td className="px-6 text-center">
                 <button
