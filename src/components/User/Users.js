@@ -1,12 +1,12 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { useEffect } from "react";
 import { useState } from "react";
 
-export default function Users({ setLoading }) {
+export default function UsersTable({ setLoading }) {
   const [rows, setRows] = useState([]);
-  const [roles, setRoles] = useState([]);
   const [statuses, setStatuses] = useState([]);
   const [data, setData] = useState([]);
   const [select, setSelect] = useState(null);
@@ -16,35 +16,20 @@ export default function Users({ setLoading }) {
 
   const gets = async () => {
     setLoading(true);
-    await getRoles();
     await getStatuses();
     await getUsers();
     setLoading(false);
   };
-  const getRoles = async () => {
-    await axios
-      .get(`${process.env.REACT_APP_URL}/api/idp/v2/roles`, {
-        headers: {
-          Authorization: sessionStorage.getItem("token"),
-        },
-      })
-      .then((res) => {
-        setRoles(res.data.data);
-      })
-      .catch((err) => {
-        toast.error("An error occurred");
-      });
-  };
 
   const getStatuses = async () => {
     await axios
-      .get(`${process.env.REACT_APP_URL}/api/idp/v2/statuses`, {
+      .get(`${process.env.REACT_APP_URL}/otil/v1/api/user/status`, {
         headers: {
           Authorization: sessionStorage.getItem("token"),
         },
       })
       .then((res) => {
-        setStatuses(res.data.data);
+        setStatuses(res.data);
       })
       .catch((err) => {
         toast.error("An error occurred");
@@ -53,41 +38,26 @@ export default function Users({ setLoading }) {
 
   const getUsers = async () => {
     await axios
-      .get(`${process.env.REACT_APP_URL}/api/idp/v2/users`, {
+      .get(`${process.env.REACT_APP_URL}/otil/v1/api/user`, {
         headers: {
           Authorization: sessionStorage.getItem("token"),
         },
       })
       .then((res) => {
-        setRows(res.data.data);
         let x = [];
-        for (let i = 0; i < res.data.data.length; i++) {
-          const element = {
-            id: res.data.data[i].id,
-            name: res.data.data[i].name,
-            email: res.data.data[i].email,
-            role: res.data.data[i].role,
-            status: res.data.data[i].status,
-            _role: res.data.data[i]._role,
-            _status: res.data.data[i]._status,
-          };
-          x.push(element);
-        }
+        for (let i = 0; i < res.data.length; i++) x.push({ ...res.data[i] });
         setData(x);
+        setRows(res.data);
       })
       .catch((err) => {
+        console.log(err);
         toast.error("An error occurred");
       });
   };
 
   const submit = async (body) => {
-    if (!/^\s*[a-z]+\s+[a-z]+\s*$/i.test(body.name))
-      return toast.error("Name is invalid");
-    if (!/^[a-z0-9.!#$%&'*+/=?^_`{|}~-]+@transoxiania.com$/i.test(body.email))
-      return toast.error("Email is invalid");
-
     await axios
-      .put(`${process.env.REACT_APP_URL}/api/idp/v2/user`, body, {
+      .put(`${process.env.REACT_APP_URL}/otil/v1/api/user`, body, {
         headers: {
           Authorization: sessionStorage.getItem("token"),
         },
@@ -97,6 +67,7 @@ export default function Users({ setLoading }) {
         toast.success("Successfully updated!");
       })
       .catch((err) => {
+        console.log(err);
         toast.error("An error occurred");
       });
   };
@@ -127,35 +98,33 @@ export default function Users({ setLoading }) {
 
   function cancelChange() {
     let x = [];
-    for (let i = 0; i < data.length; i++) {
-      const element = {
-        id: data[i].id,
-        name: data[i].name,
-        email: data[i].email,
-        role: data[i].role,
-        status: data[i].status,
-        _role: data[i]._role,
-        _status: data[i]._status,
-      };
-      x.push(element);
-    }
+    for (let i = 0; i < data.length; i++) x.push({ ...data[i] });
     setRows(x);
   }
 
   return (
-    <div className="relative overflow-x-auto sm:rounded-lg mb-10">
+    <div className="relative overflow-x-auto sm:rounded-lg mb-5">
       {rows.length > 0 && (
         <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400 max-w-6xl">
           <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             <tr>
               <th scope="col" className="px-6 py-3">
-                <span className="mx-5 my-4"> Name</span>
+                <span className="mx-5 my-4">ID</span>
+              </th>
+              <th scope="col" className="px-6 py-3">
+                <span className="mx-5 my-4">User ID</span>
+              </th>
+              <th scope="col" className="px-6 py-3">
+                <span className="mx-5 my-4">First Name</span>
+              </th>
+              <th scope="col" className="px-6 py-3">
+                <span className="mx-5 my-4">Last Name</span>
               </th>
               <th scope="col" className="px-6 py-3">
                 <span className="mx-5 my-4"> Email</span>
               </th>
               <th scope="col" className="px-6 py-3">
-                <span className="mx-5 my-4"> Role</span>
+                <span className="mx-5 my-4"> Phone</span>
               </th>
               <th scope="col" className="px-6 py-3">
                 <span className="mx-10 my-4"> Status</span>
@@ -171,16 +140,24 @@ export default function Users({ setLoading }) {
                 className="bg-white dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
               >
                 <td className="px-6">
+                  <span className="mx-5 my-3 utd utd-1">{row.id}</span>
+                </td>
+                <td className="px-6">
+                  <span className="mx-5 my-3 utd utd-2">{row.user_id}</span>
+                </td>
+                <td className="px-6">
                   {select !== row.id ? (
-                    <span className="mx-5 my-3 utd utd-1"> {row.name}</span>
+                    <span className="mx-5 my-3 utd utd-3">
+                      {row.first_name}
+                    </span>
                   ) : (
                     <div>
                       <input
                         type="text"
                         id="small-input"
-                        defaultValue={row.name}
+                        defaultValue={row.first_name}
                         onChange={(e) => {
-                          row.name = e.target.value;
+                          row.first_name = e.target.value;
                           setRows(rows);
                         }}
                         className="block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -190,7 +167,25 @@ export default function Users({ setLoading }) {
                 </td>
                 <td className="px-6">
                   {select !== row.id ? (
-                    <span className="mx-5 my-3 utd utd-2"> {row.email}</span>
+                    <span className="mx-5 my-3 utd utd-3">{row.last_name}</span>
+                  ) : (
+                    <div>
+                      <input
+                        type="text"
+                        id="small-input"
+                        defaultValue={row.last_name}
+                        onChange={(e) => {
+                          row.last_name = e.target.value;
+                          setRows(rows);
+                        }}
+                        className="block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                      />
+                    </div>
+                  )}
+                </td>
+                <td className="px-6">
+                  {select !== row.id ? (
+                    <span className="mx-5 my-3 utd utd-4"> {row.email}</span>
                   ) : (
                     <div>
                       <input
@@ -207,31 +202,26 @@ export default function Users({ setLoading }) {
                   )}
                 </td>
                 <td className="px-6">
-                  {select !== row.id || row.role === 4 ? (
-                    <span className="mx-5 my-3 utd"> {row._role}</span>
+                  {select !== row.id ? (
+                    <span className="mx-5 my-3 utd utd-4"> {row.phone}</span>
                   ) : (
-                    <select
-                      id="small"
-                      defaultValue={row.role}
-                      onChange={(e) => {
-                        const value = parseInt(e.target.value);
-                        row.role = value;
-                        row._role = roles.find((i) => i.id === value).role;
-                        setRows(rows);
-                      }}
-                      className="block w-full p-2 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    >
-                      {roles.map((el) => (
-                        <option value={el.id} key={el.id}>
-                          {el.role}
-                        </option>
-                      ))}
-                    </select>
+                    <div>
+                      <input
+                        type="text"
+                        id="small-input"
+                        defaultValue={row.phone}
+                        onChange={(e) => {
+                          row.phone = e.target.value;
+                          setRows(rows);
+                        }}
+                        className="block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                      />
+                    </div>
                   )}
                 </td>
                 <td className="px-6">
                   {select !== row.id || row.role === 4 ? (
-                    <span className="mx-10 my-3 utd"> {row._status}</span>
+                    <span className="mx-10 my-3 utd"> {row.user_status}</span>
                   ) : (
                     <select
                       id="small"
@@ -239,7 +229,7 @@ export default function Users({ setLoading }) {
                       onChange={(e) => {
                         const value = parseInt(e.target.value);
                         row.status = value;
-                        row._status = statuses.find(
+                        row.user_status = statuses.find(
                           (i) => i.id === value
                         ).status;
                         setRows(rows);
