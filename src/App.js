@@ -22,7 +22,7 @@ function App() {
           <Header />
           <ToastContainer />
           <Routes>
-            <Route path="/" element={<Navigate to="/projects" />} />
+            <Route path="/" element={<Navigate to="/users" />} />
             <Route path="/new-word" element={<CreateWord />} />
             <Route path="/users" element={<Users />} />
           </Routes>

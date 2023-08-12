@@ -100,3 +100,7 @@
 .avatar{
   font-size: 10px !important;
 }
+
+textarea {
+  resize: none;
+}

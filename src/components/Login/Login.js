@@ -43,7 +43,6 @@ export default function Login() {
         password: event.password,
       })
       .then((res) => {
-        console.log(res.data);
         for (let i = 0; i < res.data.actions.length; i++) {
           const element = res.data.actions[i];
           sessionStorage.setItem(`${element}`, element);
