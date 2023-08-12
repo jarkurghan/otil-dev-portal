@@ -6,8 +6,7 @@ import Avatar from "@mui/material/Avatar";
 import logo from "../assets/favicon.ico";
 
 const navigation = [
-  { name: "Projects", to: "/projects", current: true },
-  { name: "Applications", to: "/applications", current: false },
+  { name: "Create word", to: "/new-word", current: true },
   { name: "Users", to: "/users", current: false },
 ];
 // if (sessionStorage.getItem("secret_key")) {
