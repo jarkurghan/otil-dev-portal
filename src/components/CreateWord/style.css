@@ -1,0 +1,33 @@
+.cw-phone {
+  display: none;
+}
+.cw-computer {
+  display: inline-block;
+}
+.cw-tablet {
+  display: none;
+}
+
+@media only screen and (max-width: 992px) {
+  .cw-tablet {
+    display: inline-block;
+  }
+  .cw-phone {
+    display: none;
+  }
+  .cw-computer {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 576px) {
+  .cw-computer {
+    display: none;
+  }
+  .cw-phone {
+    display: inline-block;
+  }
+  .cw-tablet {
+    display: none;
+  }
+}

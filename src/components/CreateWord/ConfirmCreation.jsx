@@ -3,8 +3,8 @@ import React from "react";
 export default function ConfirmCreate({ setStatus, word }) {
   return (
     <div className="flex justify-center items-center flex-col">
-      <div className="my-2">
-        Are you sure you want to create the word <b>{word}</b>?
+      <div className="my-2 mx-5 text-center">
+        Are you sure you want to create the word <b>{word.word}</b>?
       </div>
       <div className="flex items-baseline">
         <button

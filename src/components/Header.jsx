@@ -7,6 +7,10 @@ import logo from "../assets/favicon.ico";
 
 const navigation = [
   { name: "Create word", to: "/new-word", current: true },
+  { name: "My words", to: "/my-word", current: false },
+  { name: "Words", to: "/words", current: false },
+  { name: "Languages", to: "/language", current: false },
+  { name: "Resources", to: "/resources", current: false },
   { name: "Users", to: "/users", current: false },
 ];
 // if (sessionStorage.getItem("secret_key")) {
@@ -78,7 +82,7 @@ export default function Example() {
                           className="rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
                         >
                           <NavLink to="/settings" id="test">
-                            <i class="fa-solid fa-gear"></i>
+                            <i className="fa-solid fa-gear"></i>
                           </NavLink>
                         </button>
                       )}
@@ -102,11 +106,7 @@ export default function Example() {
                         >
                           <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                             <Menu.Item>
-                              <NavLink
-                                to="/sign-out"
-                                onClick={logout}
-                                className="block px-4 py-2 text-sm text-gray-700"
-                              >
+                              <NavLink to="/sign-out" onClick={logout} className="block px-4 py-2 text-sm text-gray-700">
                                 Log Out
                               </NavLink>
                             </Menu.Item>
@@ -119,15 +119,9 @@ export default function Example() {
                     <Disclosure.Button className="inline-flex items-center justify-center rounded-md bg-gray-800 p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
                       <span className="sr-only">Open main menu</span>
                       {open ? (
-                        <XMarkIcon
-                          className="block h-6 w-6"
-                          aria-hidden="true"
-                        />
+                        <XMarkIcon className="block h-6 w-6" aria-hidden="true" />
                       ) : (
-                        <Bars3Icon
-                          className="block h-6 w-6"
-                          aria-hidden="true"
-                        />
+                        <Bars3Icon className="block h-6 w-6" aria-hidden="true" />
                       )}
                     </Disclosure.Button>
                   </div>
@@ -164,12 +158,8 @@ export default function Example() {
                       <Avatar sx={{ width: 24, height: 24 }} />
                     </div>
                     <div className="ml-3">
-                      <div className="text-base font-medium leading-none text-white">
-                        {sessionStorage.getItem("name")}
-                      </div>
-                      <div className="text-sm font-medium leading-none text-gray-400">
-                        {sessionStorage.getItem("email")}
-                      </div>
+                      <div className="text-base font-medium leading-none text-white">{sessionStorage.getItem("name")}</div>
+                      <div className="text-sm font-medium leading-none text-gray-400">{sessionStorage.getItem("email")}</div>
                     </div>
                     {sessionStorage.getItem("role") === "4" && (
                       <button
@@ -177,7 +167,7 @@ export default function Example() {
                         className="rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
                       >
                         <NavLink to="/settings" id="test">
-                          <i class="fa-solid fa-gear"></i>
+                          <i className="fa-solid fa-gear"></i>
                         </NavLink>
                       </button>
                     )}

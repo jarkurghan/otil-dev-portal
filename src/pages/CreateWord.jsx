@@ -8,19 +8,38 @@ import ConfirmCreate from "../components/CreateWord/ConfirmCreation";
 import { useEffect } from "react";
 import Spinner from "react-spinner-material";
 import CreatedWord from "../components/CreateWord/CreateWord";
+import "../components/CreateWord/style.css";
+import setCookie from "../cookie/setCookie";
+import getCookie from "../cookie/getCookie";
 
 const CreateWord = () => {
   const [pageStatus, setPageStatus] = useState("new");
-  const [newWord, setNewWord] = useState("");
   const [existWord, setExistWord] = useState(null);
-  const [spinner, setSpinner] = useState(false);
+  const [spinner, setSpinner] = useState(true);
   const [disableNewWord, setDisableNewWord] = useState(false);
   const [createStatus, setCreateStatus] = useState(null);
+  const [wordObj, setWordObj] = useState({});
+
+  useEffect(() => {
+    if (getCookie("word")) {
+      const cword = JSON.parse(getCookie("word"));
+      setPageStatus("create");
+      setDisableNewWord(true);
+      setWordObj(cword);
+    }
+    setSpinner(false);
+  }, []);
+
+  useEffect(() => {
+    if (pageStatus === "new") {
+      setDisableNewWord(false);
+    }
+  }, [pageStatus]);
 
   const checkNewWord = (word) => {
     if (!word) return toast.warning("enter the word");
     if (!/[a-z]+/.test(word)) return toast.warning("invalid word");
-    setNewWord(word);
+    setWordObj({ word });
     axios
       .post(
         `${process.env.REACT_APP_URL}/otil/v1/api/word/check`,
@@ -46,33 +65,60 @@ const CreateWord = () => {
       setDisableNewWord(false);
       setCreateStatus(null);
     } else if (createStatus === true) {
+      setSpinner(true);
       axios
         .post(
           `${process.env.REACT_APP_URL}/otil/v1/api/word`,
-          { word: newWord },
+          { word: wordObj.word },
           { headers: { Authorization: sessionStorage.getItem("token") } }
         )
         .then((res) => {
+          setSpinner(false);
           setPageStatus("create");
           setCreateStatus(null);
+          const newword = { id: res.data, word: wordObj.word };
+          newword.definition = {};
+          newword.history = {};
+          newword.example = {};
+          newword.other_forms = [];
+          newword.other_forms_2 = [];
+          newword.other_forms_text = "";
+          newword.other_forms_2_text = "";
+          newword.language = "";
+          newword.word_group = "";
+          setWordObj(newword);
+          setCookie("word", JSON.stringify(newword), 1);
         })
-        .catch((err) => {});
+        .catch((err) => {
+          setSpinner(false);
+        });
     }
   }, [createStatus]);
 
   return (
     <div className="container mx-auto">
-      <NewWord checkNewWord={checkNewWord} disable={disableNewWord} />
       {spinner ? (
-        <Spinner radius={150} color={"#1976d2"} stroke={16} visible={true} />
+        <div className="w-full mt-16 flex justify-center items-center">
+          <Spinner radius={150} color={"#1976d2"} stroke={16} visible={true} />
+        </div>
       ) : (
         <>
-          {pageStatus === "exists" ? (
-            <>Exists</>
+          {pageStatus === "new" ? (
+            <>
+              <NewWord checkNewWord={checkNewWord} disable={disableNewWord} />
+            </>
+          ) : pageStatus === "exists" ? (
+            <>
+              <NewWord checkNewWord={checkNewWord} disable={disableNewWord} />
+              Exists
+            </>
           ) : pageStatus === "not found" ? (
-            <ConfirmCreate setStatus={setCreateStatus} word={newWord} />
+            <>
+              <NewWord checkNewWord={checkNewWord} disable={disableNewWord} />
+              <ConfirmCreate setStatus={setCreateStatus} word={wordObj} />
+            </>
           ) : pageStatus === "create" ? (
-            <CreatedWord setStatus={setCreateStatus} word={newWord} />
+            <CreatedWord word={wordObj} setWord={setWordObj} setPageStatus={setPageStatus} />
           ) : (
             ""
           )}

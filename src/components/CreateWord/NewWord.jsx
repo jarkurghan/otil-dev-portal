@@ -2,7 +2,7 @@ import React from "react";
 
 export default function NewWord({ checkNewWord, disable }) {
   return (
-    <div className="flex justify-center items-center h-20 mt-10">
+    <div className="flex justify-center items-center h-28 mx-8">
       <div className="flex items-baseline">
         <input
           type="text"
