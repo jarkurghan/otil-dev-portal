@@ -96,7 +96,7 @@ const CreateWord = () => {
   }, [createStatus]);
 
   return (
-    <div className="container mx-auto">
+    <div className="mx-auto">
       {spinner ? (
         <div className="w-full mt-16 flex justify-center items-center">
           <Spinner radius={150} color={"#1976d2"} stroke={16} visible={true} />

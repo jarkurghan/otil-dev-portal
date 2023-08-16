@@ -31,3 +31,25 @@
     display: none;
   }
 }
+
+.cwc-container {
+  width: calc(100% - 4rem);
+  margin: 0 auto;
+}
+
+.cwcc-item {
+  display: inline-block;
+  margin-top: 1rem;
+  width: clamp(calc(850px/3 - 2rem), calc(33.3333% - 2rem), 600px);
+  margin-right: 2rem;
+}
+
+.cwc-submit{
+  float: right;
+}
+
+@media only screen and (min-width: 1949px) {
+  .cwc-submit{
+    float: left;
+  }
+}
