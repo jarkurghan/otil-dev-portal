@@ -5,7 +5,7 @@ import { toast } from "react-toastify";
 import { useEffect } from "react";
 import { useState } from "react";
 
-export default function Words() {
+export default function MyWords() {
     const [rows, setRows] = useState([]);
     useEffect(() => {
         gets();

@@ -1,12 +1,12 @@
 import React from "react";
-import Words from "../components/Words/Words";
+import MyWords from "../components/MyWords/MyWords";
 
 const MyWordsPage = () => {
-  return (
-    <div>
-      <Words />
-    </div>
-  );
+    return (
+        <div>
+            <MyWords />
+        </div>
+    );
 };
 
 export default MyWordsPage;
