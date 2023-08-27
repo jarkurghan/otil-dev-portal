@@ -8,6 +8,10 @@ import { ToastContainer } from "react-toastify";
 import Users from "./pages/Users";
 import CreateWord from "./pages/CreateWord";
 import SignIn from "./pages/Login";
+import WordsPage from "./pages/Words";
+import LanguagesPage from "./pages/Languages";
+import MyWordsPage from "./pages/MyWords";
+import ResourcesPage from "./pages/Resources";
 
 function App() {
   const token = sessionStorage.getItem("token");
@@ -24,6 +28,10 @@ function App() {
           <Routes>
             <Route path="/" element={<Navigate to="/users" />} />
             <Route path="/new-word" element={<CreateWord />} />
+            <Route path="/my-words" element={<MyWordsPage />} />
+            <Route path="/words" element={<WordsPage />} />
+            <Route path="/languages" element={<LanguagesPage />} />
+            <Route path="/resources" element={<ResourcesPage />} />
             <Route path="/users" element={<Users />} />
           </Routes>
         </>

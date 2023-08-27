@@ -7,9 +7,9 @@ import logo from "../assets/favicon.ico";
 
 const navigation = [
   { name: "Create word", to: "/new-word", current: true },
-  { name: "My words", to: "/my-word", current: false },
+  { name: "My words", to: "/my-words", current: false },
   { name: "Words", to: "/words", current: false },
-  { name: "Languages", to: "/language", current: false },
+  { name: "Languages", to: "/languages", current: false },
   { name: "Resources", to: "/resources", current: false },
   { name: "Users", to: "/users", current: false },
 ];
