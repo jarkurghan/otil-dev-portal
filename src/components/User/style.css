@@ -1,99 +1,99 @@
 .u-activity {
-  padding: 0 2.75rem !important;
+    padding: 0 2.75rem !important;
 }
 
 .ua {
-  height: fit-content;
-  max-height: 15px;
+    height: fit-content;
+    max-height: 15px;
 }
 
 .ua-name {
-  display: inline-block;
-  width: 140px;
-  color: rgb(107 114 128 / 1);
-  font-size: 0.875rem;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  white-space: nowrap;
+    display: inline-block;
+    width: 140px;
+    color: rgb(107 114 128 / 1);
+    font-size: 0.875rem;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
 }
 
 .ua-activity {
-  width: 140px;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+    width: 140px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .ua-block {
-  height: 15px;
-  max-height: 15px;
-  width: 15px;
-  max-width: 15px;
+    height: 15px;
+    max-height: 15px;
+    width: 15px;
+    max-width: 15px;
 }
 
 .ua-item {
-  display: inline-block;
-  width: 11px;
-  height: 11px !important;
-  outline: 1px solid rgba(27, 31, 35, 0.06);
-  border-radius: 2px;
-  outline-offset: -1px;
-  padding: 0 !important;
-  margin: 2px;
+    display: inline-block;
+    width: 11px;
+    height: 11px !important;
+    outline: 1px solid rgba(27, 31, 35, 0.06);
+    border-radius: 2px;
+    outline-offset: -1px;
+    padding: 0 !important;
+    margin: 2px;
 }
 
 .uad1 {
-  background-color: #ebedf0;
+    background-color: #ebedf0;
 }
 
 .uad2 {
-  background-color: #9be9a8;
+    background-color: #9be9a8;
 }
 
 .uad3 {
-  background-color: #40c463;
+    background-color: #40c463;
 }
 
 .uad4 {
-  background-color: #30a14e;
+    background-color: #30a14e;
 }
 
 .uad5 {
-  background-color: #216e39;
+    background-color: #216e39;
 }
 
 @media (max-width: 660px) {
-  .u-activity {
-    display: none;
-  }
+    .u-activity {
+        display: none;
+    }
 }
 
 .utd {
-  display: inline-block;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  white-space: nowrap;
+    display: inline-block;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
 }
 
 .utd-1 {
-  width: 20px;
+    width: 20px;
 }
 
 .utd-2 {
-  width: 50px;
+    width: 50px;
 }
 
 .utd-3 {
-  width: 120px;
+    width: 120px;
 }
 
 .utd-4 {
-  width: 160px;
+    width: 160px;
 }
 
 select {
-  outline: none;
+    outline: none;
 }
 
 input:focus {
-  outline: rgb(63 131 248/1) !important;
+    outline: rgb(63 131 248/1) !important;
 }
