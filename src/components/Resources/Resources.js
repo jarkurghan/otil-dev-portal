@@ -2,24 +2,21 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React from "react";
 import axios from "axios";
-import { toast } from "react-toastify";
 import { useEffect } from "react";
 import { useState } from "react";
 import lucatch from "../../assets/functions/catch";
-import CreateResource from "./CreateResource";
+import { useNavigate } from "react-router-dom";
 
 export default function Resources() {
+    const navigate = useNavigate();
     const [rows, setRows] = useState([]);
-    const [open, setOpen] = useState(false);
     useEffect(() => {
         gets();
     }, []);
 
-    const gets = async () => {
-        await getUsers();
-    };
+    const gets = async () => await getResources();
 
-    const getUsers = async () => {
+    const getResources = async () => {
         await axios
             .get(`${process.env.REACT_APP_URL}/otil/v1/api/resource`, { headers: { Authorization: sessionStorage.getItem("token") } })
             .then((res) => setRows(res.data))
@@ -38,9 +35,6 @@ export default function Resources() {
                             <th scope="col" className="px-1 sm:px-6 py-3">
                                 <span className="mx-5 my-4">Name</span>
                             </th>
-                            <th scope="col" className="px-6 py-3 md:table-cell hidden">
-                                <span className="mx-5 my-4">Create Date</span>
-                            </th>
                             <th scope="col"></th>
                             <th scope="col"></th>
                         </tr>
@@ -54,14 +48,9 @@ export default function Resources() {
                                 <td className="px-1 sm:px-6">
                                     <span className="mx-5 my-3">{row.name}</span>
                                 </td>
-                                <td className="px-6 md:table-cell hidden">
-                                    <span className="mx-5 my-3">
-                                        {row.created_date.slice(0, 10)} {row.created_date.slice(11, 16)}
-                                    </span>
-                                </td>
                                 <td className="px-1 sm:px-2 text-center">
                                     <button className="bg-indigo-300 hover:bg-indigo-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center my-2">
-                                        <div style={{ width: "60px" }}>detail</div>
+                                        <div style={{ width: "60px" }}>view</div>
                                     </button>
                                 </td>
                                 <td className="px-1 sm:px-2 text-center sm:table-cell hidden">
@@ -75,13 +64,12 @@ export default function Resources() {
                 </table>
             )}
 
-            <CreateResource open={open} setOpen={setOpen} />
             <div className="h-16 text-left max-w-6xl ">
                 <button
-                    onClick={() => setOpen(true)}
+                    onClick={() => navigate("/create-resource")}
                     className="bg-indigo-300 hover:bg-indigo-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center my-3 mx-10"
                 >
-                    Create User
+                    Create Resource
                 </button>
             </div>
         </div>

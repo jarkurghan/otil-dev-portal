@@ -102,26 +102,26 @@ export default function Example() {
                     </div>
                     <div className="my-8">
                         <h1 className="text-3xl font-semibold capitalize">Statistika</h1>
-                        <div class="flex items-center mt-4">
-                            <span class="text-sm font-medium text-blue-600 dark:text-blue-500 hover:underline">8 star</span>
-                            <div class="w-2/4 h-5 mx-4 bg-gray-200 rounded dark:bg-gray-700">
-                                <div class="h-5 bg-yellow-300 rounded" style={{ width: "70%" }}></div>
+                        <div className="flex items-center mt-4">
+                            <span className="text-sm font-medium text-blue-600 dark:text-blue-500 hover:underline">8 star</span>
+                            <div className="w-2/4 h-5 mx-4 bg-gray-200 rounded dark:bg-gray-700">
+                                <div className="h-5 bg-yellow-300 rounded" style={{ width: "70%" }}></div>
                             </div>
-                            <span class="text-sm font-medium text-gray-500 dark:text-gray-400">70%</span>
+                            <span className="text-sm font-medium text-gray-500 dark:text-gray-400">70%</span>
                         </div>
-                        <div class="flex items-center mt-4">
-                            <span class="text-sm font-medium text-blue-600 dark:text-blue-500 hover:underline">8 star</span>
-                            <div class="w-2/4 h-5 mx-4 bg-gray-200 rounded dark:bg-gray-700">
-                                <div class="h-5 bg-yellow-300 rounded" style={{ width: "70%" }}></div>
+                        <div className="flex items-center mt-4">
+                            <span className="text-sm font-medium text-blue-600 dark:text-blue-500 hover:underline">8 star</span>
+                            <div className="w-2/4 h-5 mx-4 bg-gray-200 rounded dark:bg-gray-700">
+                                <div className="h-5 bg-yellow-300 rounded" style={{ width: "70%" }}></div>
                             </div>
-                            <span class="text-sm font-medium text-gray-500 dark:text-gray-400">70%</span>
+                            <span className="text-sm font-medium text-gray-500 dark:text-gray-400">70%</span>
                         </div>
-                        <div class="flex items-center mt-4">
-                            <span class="text-sm font-medium text-blue-600 dark:text-blue-500 hover:underline">8 star</span>
-                            <div class="w-2/4 h-5 mx-4 bg-gray-200 rounded dark:bg-gray-700">
-                                <div class="h-5 bg-yellow-300 rounded" style={{ width: "70%" }}></div>
+                        <div className="flex items-center mt-4">
+                            <span className="text-sm font-medium text-blue-600 dark:text-blue-500 hover:underline">8 star</span>
+                            <div className="w-2/4 h-5 mx-4 bg-gray-200 rounded dark:bg-gray-700">
+                                <div className="h-5 bg-yellow-300 rounded" style={{ width: "70%" }}></div>
                             </div>
-                            <span class="text-sm font-medium text-gray-500 dark:text-gray-400">70%</span>
+                            <span className="text-sm font-medium text-gray-500 dark:text-gray-400">70%</span>
                         </div>
                     </div>
                     <div className="my-8">

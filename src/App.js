@@ -12,6 +12,7 @@ import WordsPage from "./pages/Words";
 import LanguagesPage from "./pages/Languages";
 import MyWordsPage from "./pages/MyWords";
 import ResourcesPage from "./pages/Resources";
+import CreateResource from "./pages/CreateResource";
 
 function App() {
     const token = sessionStorage.getItem("token");
@@ -32,6 +33,7 @@ function App() {
                         <Route path="/words" element={<WordsPage />} />
                         <Route path="/languages" element={<LanguagesPage />} />
                         <Route path="/resources" element={<ResourcesPage />} />
+                        <Route path="/create-resource" element={<CreateResource />} />
                         <Route path="/users" element={<Users />} />
                     </Routes>
                 </>
