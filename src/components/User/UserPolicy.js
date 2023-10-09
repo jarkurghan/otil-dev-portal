@@ -23,7 +23,7 @@ export default function UserPolicies() {
         await axios
             .get(`${process.env.REACT_APP_URL}/otil/v1/api/user/action`, {
                 headers: {
-                    Authorization: sessionStorage.getItem("token"),
+                    Authorization: localStorage.getItem("token"),
                 },
             })
             .then((res) => {
@@ -47,7 +47,7 @@ export default function UserPolicies() {
         await axios
             .get(`${process.env.REACT_APP_URL}/otil/v1/api/user/actions`, {
                 headers: {
-                    Authorization: sessionStorage.getItem("token"),
+                    Authorization: localStorage.getItem("token"),
                 },
             })
             .then((res) => {
@@ -95,7 +95,7 @@ export default function UserPolicies() {
             });
             delete add[i].text;
             await axios
-                .post(`${process.env.REACT_APP_URL}/otil/v1/api/user/action/add`, add[i], { headers: { Authorization: sessionStorage.getItem("token") } })
+                .post(`${process.env.REACT_APP_URL}/otil/v1/api/user/action/add`, add[i], { headers: { Authorization: localStorage.getItem("token") } })
                 .catch((err) => {
                     console.log(err);
                     toast.error("An error occurred");
@@ -110,7 +110,7 @@ export default function UserPolicies() {
             await axios
                 .delete(`${process.env.REACT_APP_URL}/otil/v1/api/user/action/del`, {
                     data: del[i],
-                    headers: { Authorization: sessionStorage.getItem("token") },
+                    headers: { Authorization: localStorage.getItem("token") },
                 })
                 .catch((err) => {
                     console.log(err);

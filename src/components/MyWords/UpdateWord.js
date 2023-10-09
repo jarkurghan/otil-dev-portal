@@ -1,19 +1,19 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react";
-import setCookie from "../../cookie/setCookie";
-import InputWord from "./inputs/word";
-import InputLanguage from "./inputs/language";
-import InputWordGroup from "./inputs/word-group";
-import InputDefinition from "./inputs/definition";
-import InputHistory from "./inputs/history";
-import InputSource from "./inputs/source";
-import InputOtherForms from "./inputs/other-forms";
-import InputOtherForms2 from "./inputs/other-forms-2";
-import ButtonSubmit from "./inputs/submit";
-import axios from "axios";
 import lucatch from "../../assets/functions/catch";
+// import setCookie from "../../cookie/setCookie";
+import InputWord from "../CreateWord/inputs/word";
+import InputLanguage from "../CreateWord/inputs/language";
+import InputWordGroup from "../CreateWord/inputs/word-group";
+import InputDefinition from "../CreateWord/inputs/definition";
+import InputHistory from "../CreateWord/inputs/history";
+import ButtonSubmit from "../CreateWord/inputs/submit";
+import InputOtherForms2 from "../CreateWord/inputs/other-forms-2";
+import InputOtherForms from "../CreateWord/inputs/other-forms";
+import InputSource from "../CreateWord/inputs/source";
+import axios from "axios";
 
-export default function CreatedWord({ word, setWord, setPageStatus }) {
+export default function UpdateWord({ word, setWord }) {
     const [resources, setResources] = useState([]);
     const [languages, setLanguages] = useState([]);
     const [wordTypes, setWordTypes] = useState([]);
@@ -41,8 +41,8 @@ export default function CreatedWord({ word, setWord, setPageStatus }) {
     };
 
     const submit = async () => {
-        setCookie("word", "", 0);
-        setPageStatus("new");
+        // setCookie("word", "", 0);
+        // setPageStatus("new");
         setWord({});
 
         // validation
@@ -58,9 +58,9 @@ export default function CreatedWord({ word, setWord, setPageStatus }) {
         getWordTypes();
     }, [word.language]);
 
-    useEffect(() => {
-        setCookie("word", JSON.stringify(word), 1);
-    }, [word]);
+    // useEffect(() => {
+    //     setCookie("word", JSON.stringify(word), 1);
+    // }, [word]);
 
     return (
         <div className="inline-block w-[calc(100%-3rem)] mx-6 my-4">

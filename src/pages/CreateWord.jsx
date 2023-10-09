@@ -41,7 +41,7 @@ const CreateWord = () => {
         if (!/[a-z]+/.test(word)) return toast.warning("invalid word");
         setWordObj({ word });
         axios
-            .post(`${process.env.REACT_APP_URL}/otil/v1/api/word/check`, { word }, { headers: { Authorization: sessionStorage.getItem("token") } })
+            .post(`${process.env.REACT_APP_URL}/otil/v1/api/word/check`, { word }, { headers: { Authorization: localStorage.getItem("token") } })
             .then((res) => {
                 if (res.data === "not found") {
                     setPageStatus("not found");
@@ -63,7 +63,7 @@ const CreateWord = () => {
         } else if (createStatus === true) {
             setSpinner(true);
             axios
-                .post(`${process.env.REACT_APP_URL}/otil/v1/api/word`, { word: wordObj.word }, { headers: { Authorization: sessionStorage.getItem("token") } })
+                .post(`${process.env.REACT_APP_URL}/otil/v1/api/word`, { word: wordObj.word }, { headers: { Authorization: localStorage.getItem("token") } })
                 .then((res) => {
                     setSpinner(false);
                     setPageStatus("create");

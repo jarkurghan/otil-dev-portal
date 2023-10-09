@@ -14,7 +14,7 @@ export default function UserActivity() {
     //   await axios
     //     .get(`${process.env.REACT_APP_URL}/api/idp/v2/user/activity`, {
     //       headers: {
-    //         Authorization: sessionStorage.getItem("token"),
+    //         Authorization: localStorage.getItem("token"),
     //       },
     //     })
     //     .then((res) => {

@@ -21,7 +21,7 @@ export default function CreateUser({ open, setOpen }) {
         setSpinner(true);
         axios
             .post(`${process.env.REACT_APP_URL}/api/idp/v2/user`, body, {
-                headers: { Authorization: sessionStorage.getItem("token") },
+                headers: { Authorization: localStorage.getItem("token") },
             })
             .then((res) => {
                 toast.success("Successfully sended!");

@@ -29,7 +29,7 @@ export default function Example() {
 
     const getLanguages = async () => {
         await axios
-            .get(`${process.env.REACT_APP_URL}/otil/v1/api/language`, { headers: { Authorization: sessionStorage.getItem("token") } })
+            .get(`${process.env.REACT_APP_URL}/otil/v1/api/language`, { headers: { Authorization: localStorage.getItem("token") } })
             .then((res) => {
                 setRows(res.data);
                 if (res.data.length === 1) setRow(res.data[0]);
@@ -41,7 +41,7 @@ export default function Example() {
     };
     const wordTypes = async () => {
         await axios
-            .get(`${process.env.REACT_APP_URL}/otil/v1/api/language/type/${row?.id}`, { headers: { Authorization: sessionStorage.getItem("token") } })
+            .get(`${process.env.REACT_APP_URL}/otil/v1/api/language/type/${row?.id}`, { headers: { Authorization: localStorage.getItem("token") } })
             .then((res) => {
                 console.log(res.data);
             })
@@ -53,7 +53,7 @@ export default function Example() {
 
     const addLanguage = async () => {
         await axios
-            .post(`${process.env.REACT_APP_URL}/otil/v1/api/language`, addlang, { headers: { Authorization: sessionStorage.getItem("token") } })
+            .post(`${process.env.REACT_APP_URL}/otil/v1/api/language`, addlang, { headers: { Authorization: localStorage.getItem("token") } })
             .then(async (res) => await gets())
             .catch((err) => {
                 console.log(err);
@@ -65,7 +65,7 @@ export default function Example() {
             .post(
                 `${process.env.REACT_APP_URL}/otil/v1/api/language/type`,
                 { language: row.id, type: addType },
-                { headers: { Authorization: sessionStorage.getItem("token") } }
+                { headers: { Authorization: localStorage.getItem("token") } }
             )
             .then(async (res) => await gets())
             .catch((err) => {

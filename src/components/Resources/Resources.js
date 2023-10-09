@@ -19,14 +19,14 @@ export default function Resources() {
 
     const getResources = async () => {
         await axios
-            .get(`${process.env.REACT_APP_URL}/otil/v1/api/resource`, { headers: { Authorization: sessionStorage.getItem("token") } })
+            .get(`${process.env.REACT_APP_URL}/otil/v1/api/resource`, { headers: { Authorization: localStorage.getItem("token") } })
             .then((res) => setRows(res.data))
             .catch(lucatch);
     };
 
     const getResourceFile = async (id) => {
         fetch(`${process.env.REACT_APP_URL}/otil/v1/api/resource/file/${id}`, {
-            headers: { Authorization: sessionStorage.getItem("token"), "Content-type": "application/pdf" },
+            headers: { Authorization: localStorage.getItem("token"), "Content-type": "application/pdf" },
         })
             .then((res) => res.blob())
             .then((blob) => FileSaver.saveAs(blob, id))

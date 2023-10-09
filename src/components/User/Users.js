@@ -25,7 +25,7 @@ export default function UsersTable({ setLoading }) {
         await axios
             .get(`${process.env.REACT_APP_URL}/otil/v1/api/user/status`, {
                 headers: {
-                    Authorization: sessionStorage.getItem("token"),
+                    Authorization: localStorage.getItem("token"),
                 },
             })
             .then((res) => {
@@ -40,7 +40,7 @@ export default function UsersTable({ setLoading }) {
         await axios
             .get(`${process.env.REACT_APP_URL}/otil/v1/api/user`, {
                 headers: {
-                    Authorization: sessionStorage.getItem("token"),
+                    Authorization: localStorage.getItem("token"),
                 },
             })
             .then((res) => {
@@ -59,7 +59,7 @@ export default function UsersTable({ setLoading }) {
         await axios
             .put(`${process.env.REACT_APP_URL}/otil/v1/api/user`, body, {
                 headers: {
-                    Authorization: sessionStorage.getItem("token"),
+                    Authorization: localStorage.getItem("token"),
                 },
             })
             .then(async (res) => {

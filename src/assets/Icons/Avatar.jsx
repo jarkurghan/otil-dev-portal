@@ -1,8 +1,8 @@
 import React from "react";
 
-const Avatar = () => {
+const Avatar = ({ color }) => {
     return (
-        <svg fill="#000000" height="24px" width="24px" viewBox="0 0 512 512">
+        <svg fill={color || "#000000"} height="24px" width="24px" viewBox="0 0 512 512">
             <g>
                 <g>
                     <circle cx="256" cy="114.526" r="114.526" />

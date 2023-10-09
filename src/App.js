@@ -13,9 +13,10 @@ import LanguagesPage from "./pages/Languages";
 import MyWordsPage from "./pages/MyWords";
 import ResourcesPage from "./pages/Resources";
 import CreateResource from "./pages/CreateResource";
+import WordDetailsPage from "./pages/WordDetails";
 
 function App() {
-    const token = sessionStorage.getItem("token");
+    const token = localStorage.getItem("token");
     const navigate = useNavigate();
     useEffect(() => {
         navigate(`${window.location.pathname}`);
@@ -30,6 +31,7 @@ function App() {
                         <Route path="/" element={<Navigate to="/users" />} />
                         <Route path="/new-word" element={<CreateWord />} />
                         <Route path="/my-words" element={<MyWordsPage />} />
+                        <Route path="/my-words/:id/:page" element={<WordDetailsPage />} />
                         <Route path="/words" element={<WordsPage />} />
                         <Route path="/languages" element={<LanguagesPage />} />
                         <Route path="/resources" element={<ResourcesPage />} />

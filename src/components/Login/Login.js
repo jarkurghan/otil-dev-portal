@@ -43,10 +43,10 @@ export default function Login() {
             .then((res) => {
                 for (let i = 0; i < res.data.actions.length; i++) {
                     const element = res.data.actions[i];
-                    sessionStorage.setItem(`${element}`, element);
+                    localStorage.setItem(`${element}`, element);
                 }
-                sessionStorage.setItem("token", res.data?.token);
-                sessionStorage.setItem("user_id", event.user_id);
+                localStorage.setItem("token", res.data?.token);
+                localStorage.setItem("user_id", event.user_id);
                 setLoading(false);
                 // window.location = "/";
                 navigate("/");
