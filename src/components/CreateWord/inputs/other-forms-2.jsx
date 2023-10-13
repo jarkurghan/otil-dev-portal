@@ -23,7 +23,7 @@ export default function InputOtherForms2({ word, setWord }) {
                             type="button"
                             onClick={() => {
                                 const element = document.getElementById("other_forms_2");
-                                if (word.other_forms_2.indexOf(element.value) === -1) word.other_forms_2.push(element.value);
+                                if (word.other_forms_2.indexOf(element.value) === -1 && Boolean(element.value)) word.other_forms_2.push(element.value);
                                 element.value = "";
                                 element.focus();
                                 setWord({ ...word });

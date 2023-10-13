@@ -12,6 +12,9 @@ import InputOtherForms2 from "./inputs/other-forms-2";
 import ButtonSubmit from "./inputs/submit";
 import axios from "axios";
 import lucatch from "../../assets/functions/catch";
+import createWord from "./validation";
+import { toast } from "react-toastify";
+import convert from "./convert";
 
 export default function CreatedWord({ word, setWord, setPageStatus }) {
     const [resources, setResources] = useState([]);
@@ -35,17 +38,22 @@ export default function CreatedWord({ word, setWord, setPageStatus }) {
     const getWordTypes = async () => {
         if (word.language)
             await axios
-                .get(`${process.env.REACT_APP_URL}/otil/v1/api/language/type/${word.language}`, { headers: { Authorization: localStorage.getItem("token") } })
+                .get(`${process.env.REACT_APP_URL}/otil/v1/api/language/${word.language}/type`, { headers: { Authorization: localStorage.getItem("token") } })
                 .then((res) => setWordTypes(res.data))
                 .catch(lucatch);
     };
 
     const submit = async () => {
-        setCookie("word", "", 0);
-        setPageStatus("new");
-        setWord({});
+        // setCookie("word", "", 0);
+        // setPageStatus("new");
+        // setWord({});
 
-        // validation
+        const value = createWord.validate(convert(word));
+        if (value.error) {
+            toast.error(value.error.message);
+            return 0;
+        }
+
         // submit
     };
 

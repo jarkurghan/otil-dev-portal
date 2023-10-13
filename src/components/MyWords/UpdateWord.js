@@ -35,7 +35,7 @@ export default function UpdateWord({ word, setWord }) {
     const getWordTypes = async () => {
         if (word.language)
             await axios
-                .get(`${process.env.REACT_APP_URL}/otil/v1/api/language/type/${word.language}`, { headers: { Authorization: localStorage.getItem("token") } })
+                .get(`${process.env.REACT_APP_URL}/otil/v1/api/language/${word.language}/type`, { headers: { Authorization: localStorage.getItem("token") } })
                 .then((res) => setWordTypes(res.data))
                 .catch(lucatch);
     };

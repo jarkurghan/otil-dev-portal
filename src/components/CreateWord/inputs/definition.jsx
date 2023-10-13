@@ -26,6 +26,7 @@ export default function InputDefinition({ word, setWord, resources }) {
                         <option value="" className="hidden">
                             choose resource
                         </option>
+                        <option value={""}>not choosing</option>
                         {resources.map((e) => (
                             <option key={e.id} value={e.id}>
                                 {e.name}

@@ -22,7 +22,7 @@ export default function InputOtherForms({ word, setWord }) {
                             className="bg-transparent enabled:hover:bg-blue-500 text-blue-700 font-semibold enabled:hover:text-white border border-blue-500 enabled:hover:border-transparent text-sm px-4 py-2 rounded shadow outline-none focus:outline-none ease-linear transition-all duration-150 ml-5"
                             onClick={() => {
                                 const element = document.getElementById("other_forms");
-                                if (word.other_forms.indexOf(element.value) === -1) word.other_forms.push(element.value);
+                                if (word.other_forms.indexOf(element.value) === -1 && Boolean(element.value)) word.other_forms.push(element.value);
                                 element.value = "";
                                 element.focus();
                                 setWord({ ...word });

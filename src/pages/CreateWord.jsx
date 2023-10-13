@@ -61,29 +61,20 @@ const CreateWord = () => {
             setDisableNewWord(false);
             setCreateStatus(null);
         } else if (createStatus === true) {
-            setSpinner(true);
-            axios
-                .post(`${process.env.REACT_APP_URL}/otil/v1/api/word`, { word: wordObj.word }, { headers: { Authorization: localStorage.getItem("token") } })
-                .then((res) => {
-                    setSpinner(false);
-                    setPageStatus("create");
-                    setCreateStatus(null);
-                    const newword = { id: res.data, word: wordObj.word };
-                    newword.definition = {};
-                    newword.history = {};
-                    newword.example = {};
-                    newword.other_forms = [];
-                    newword.other_forms_2 = [];
-                    newword.other_forms_text = "";
-                    newword.other_forms_2_text = "";
-                    newword.language = "";
-                    newword.word_group = "";
-                    setWordObj(newword);
-                    setCookie("word", JSON.stringify(newword), 1);
-                })
-                .catch((err) => {
-                    setSpinner(false);
-                });
+            setPageStatus("create");
+            setCreateStatus(null);
+            const newword = { word: wordObj.word };
+            newword.definition = {};
+            newword.history = {};
+            newword.example = {};
+            newword.other_forms = [];
+            newword.other_forms_2 = [];
+            newword.other_forms_text = "";
+            newword.other_forms_2_text = "";
+            newword.language = "";
+            newword.word_group = "";
+            setWordObj(newword);
+            setCookie("word", JSON.stringify(newword), 1);
         }
     }, [createStatus]);
 

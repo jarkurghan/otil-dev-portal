@@ -41,7 +41,7 @@ export default function Example() {
     };
     const wordTypes = async () => {
         await axios
-            .get(`${process.env.REACT_APP_URL}/otil/v1/api/language/type/${row?.id}`, { headers: { Authorization: localStorage.getItem("token") } })
+            .get(`${process.env.REACT_APP_URL}/otil/v1/api/language/${row?.id}/type`, { headers: { Authorization: localStorage.getItem("token") } })
             .then((res) => {
                 console.log(res.data);
             })

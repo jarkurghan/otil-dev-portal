@@ -20,6 +20,7 @@
         "file-saver": "^2.0.5",
         "formik": "^2.2.9",
         "formik-material-ui": "^4.0.0-alpha.2",
+        "joi": "^17.11.0",
         "node": "^20.4.0",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
