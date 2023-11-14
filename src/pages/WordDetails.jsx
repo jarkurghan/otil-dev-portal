@@ -8,7 +8,7 @@ import lucatch from "../assets/functions/catch";
 import WordComments from "../components/MyWords/WordComments";
 
 const WordDetailsPage = () => {
-    const page = "my-words";
+    const page = "words";
     const slash = "/";
     const path = window.location.href.slice(window.location.href.indexOf(page) + page.length + 1);
     const [id, setID] = useState(path.slice(0, path.indexOf(slash)));

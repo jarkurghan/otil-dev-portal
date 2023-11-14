@@ -44,17 +44,21 @@ export default function CreatedWord({ word, setWord, setPageStatus }) {
     };
 
     const submit = async () => {
-        // setCookie("word", "", 0);
-        // setPageStatus("new");
-        // setWord({});
-
         const value = createWord.validate(convert(word));
         if (value.error) {
             toast.error(value.error.message);
             return 0;
         }
 
-        // submit
+        await axios
+            .post(`${process.env.REACT_APP_URL}/otil/v1/api/word/full`, value.value, { headers: { Authorization: localStorage.getItem("token") } })
+            .then((res) => {
+                setCookie("word", "", 0);
+                setPageStatus("new");
+                setWord({});
+                toast.success("Success!");
+            })
+            .catch(lucatch);
     };
 
     useEffect(() => {

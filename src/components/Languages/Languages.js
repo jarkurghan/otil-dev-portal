@@ -13,6 +13,7 @@ export default function Example() {
     const [add, setAdd] = useState(null);
     const [addlang, setAddLang] = useState(addlangdef);
     const [addType, setAddType] = useState(addtypedef);
+    const [types, setTypes] = useState([]);
 
     useEffect(() => {
         gets();
@@ -42,9 +43,7 @@ export default function Example() {
     const wordTypes = async () => {
         await axios
             .get(`${process.env.REACT_APP_URL}/otil/v1/api/language/${row?.id}/type`, { headers: { Authorization: localStorage.getItem("token") } })
-            .then((res) => {
-                console.log(res.data);
-            })
+            .then((res) => setTypes(res.data))
             .catch((err) => {
                 console.log(err);
                 toast.error("An error occurred");
@@ -87,7 +86,7 @@ export default function Example() {
                     <div className="overflow-hidden bg-white shadow sm:rounded-lg">
                         <ul className="divide-y divide-gray-200">
                             {rows.map((e) => (
-                                <Item data={e} current={e.id === row?.id} onDoubleClick={() => setRow(e)} />
+                                <Item key={e.id} data={e} current={e.id === row?.id} onDoubleClick={() => setRow(e)} />
                             ))}
                         </ul>
                     </div>
@@ -100,42 +99,55 @@ export default function Example() {
                         </div>
                         <div>Starts</div>
                     </div>
-                    <div className="my-8">
-                        <h1 className="text-3xl font-semibold capitalize">Statistika</h1>
-                        <div className="flex items-center mt-4">
-                            <span className="text-sm font-medium text-blue-600 dark:text-blue-500 hover:underline">8 star</span>
-                            <div className="w-2/4 h-5 mx-4 bg-gray-200 rounded dark:bg-gray-700">
-                                <div className="h-5 bg-yellow-300 rounded" style={{ width: "70%" }}></div>
+                    {false && (
+                        <div className="my-8">
+                            <h1 className="text-3xl font-semibold capitalize">Statistika</h1>
+                            <div className="flex items-center mt-4">
+                                <span className="text-sm font-medium text-blue-600 dark:text-blue-500 hover:underline">8 star</span>
+                                <div className="w-2/4 h-5 mx-4 bg-gray-200 rounded dark:bg-gray-700">
+                                    <div className="h-5 bg-yellow-300 rounded" style={{ width: "70%" }}></div>
+                                </div>
+                                <span className="text-sm font-medium text-gray-500 dark:text-gray-400">70%</span>
                             </div>
-                            <span className="text-sm font-medium text-gray-500 dark:text-gray-400">70%</span>
-                        </div>
-                        <div className="flex items-center mt-4">
-                            <span className="text-sm font-medium text-blue-600 dark:text-blue-500 hover:underline">8 star</span>
-                            <div className="w-2/4 h-5 mx-4 bg-gray-200 rounded dark:bg-gray-700">
-                                <div className="h-5 bg-yellow-300 rounded" style={{ width: "70%" }}></div>
+                            <div className="flex items-center mt-4">
+                                <span className="text-sm font-medium text-blue-600 dark:text-blue-500 hover:underline">8 star</span>
+                                <div className="w-2/4 h-5 mx-4 bg-gray-200 rounded dark:bg-gray-700">
+                                    <div className="h-5 bg-yellow-300 rounded" style={{ width: "70%" }}></div>
+                                </div>
+                                <span className="text-sm font-medium text-gray-500 dark:text-gray-400">70%</span>
                             </div>
-                            <span className="text-sm font-medium text-gray-500 dark:text-gray-400">70%</span>
-                        </div>
-                        <div className="flex items-center mt-4">
-                            <span className="text-sm font-medium text-blue-600 dark:text-blue-500 hover:underline">8 star</span>
-                            <div className="w-2/4 h-5 mx-4 bg-gray-200 rounded dark:bg-gray-700">
-                                <div className="h-5 bg-yellow-300 rounded" style={{ width: "70%" }}></div>
+                            <div className="flex items-center mt-4">
+                                <span className="text-sm font-medium text-blue-600 dark:text-blue-500 hover:underline">8 star</span>
+                                <div className="w-2/4 h-5 mx-4 bg-gray-200 rounded dark:bg-gray-700">
+                                    <div className="h-5 bg-yellow-300 rounded" style={{ width: "70%" }}></div>
+                                </div>
+                                <span className="text-sm font-medium text-gray-500 dark:text-gray-400">70%</span>
                             </div>
-                            <span className="text-sm font-medium text-gray-500 dark:text-gray-400">70%</span>
                         </div>
-                    </div>
-                    <div className="my-8">
-                        <h1 className="text-3xl font-semibold">So'z turkumlari</h1>
-                    </div>
+                    )}
+                    {row && (
+                        <div className="my-8">
+                            <h1 className="text-3xl font-semibold">So'z turkumlari</h1>
+                            <div className="overflow-hidden bg-white shadow sm:rounded-lg">
+                                <ul className="divide-y divide-gray-200">
+                                    {types.map((e) => (
+                                        <Item key={e.id} data={e} />
+                                    ))}
+                                </ul>
+                            </div>
+                        </div>
+                    )}
                     <div className="my-8">
                         <h1 className="text-3xl font-semibold">Qo'shish</h1>
                         <div>
-                            <button
-                                onClick={() => setAdd("type")}
-                                className="bg-indigo-300 hover:bg-indigo-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center my-2 mr-5"
-                            >
-                                word type
-                            </button>
+                            {row && (
+                                <button
+                                    onClick={() => setAdd("type")}
+                                    className="bg-indigo-300 hover:bg-indigo-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center my-2 mr-5"
+                                >
+                                    word type
+                                </button>
+                            )}
                             <button
                                 onClick={() => setAdd("lang")}
                                 className="bg-indigo-300 hover:bg-indigo-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center my-2"

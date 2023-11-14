@@ -3,11 +3,11 @@ import React from "react";
 const Dislike = () => {
     return (
         <svg width="16px" height="16px" viewBox="0 0 21.00 21.00" version="1.1" fill="#000000" stroke="#000000" transform="matrix(1, 0, 0, -1, 0, 0)rotate(0)">
-            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-            <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" stroke="#CCCCCC" stroke-width="0.126"></g>
+            <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
+            <g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round" stroke="#CCCCCC" strokeWidth="0.126"></g>
             <g id="SVGRepo_iconCarrier">
                 <title>like [#1385]</title> <desc>Created with Sketch.</desc> <defs> </defs>
-                <g id="Page-1" stroke-width="0.00021000000000000004" fill="none" fill-rule="evenodd">
+                <g id="Page-1" strokeWidth="0.00021000000000000004" fill="none" fillRule="evenodd">
                     <g id="Dribbble-Light-Preview" transform="translate(-259.000000, -760.000000)" fill="#555">
                         <g id="icons" transform="translate(56.000000, 160.000000)">
                             <path

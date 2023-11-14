@@ -1,10 +1,10 @@
+/* eslint-disable no-unused-vars */
 import React from "react";
 import UserPolicies from "../components/User/UserPolicy";
 import { useState } from "react";
 import Spinner from "react-spinner-material";
 import UsersTable from "../components/User/Users";
 import "../components/User/style.css";
-import UserActivity from "../components/User/UserActivity";
 import CreateUser from "../components/User/CreateUser";
 
 const Users = () => {
@@ -28,7 +28,6 @@ const Users = () => {
             ) : (
                 <>
                     <UserPolicies />
-                    {!device && <UserActivity />}
                     <CreateUser open={open} setOpen={setOpen} />
                     <div className="h-16 text-left max-w-6xl ">
                         <button

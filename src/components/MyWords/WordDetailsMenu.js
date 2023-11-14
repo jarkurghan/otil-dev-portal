@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 export default function WordDetailsMenu({ id, page, setPage }) {
     const navigate = useNavigate();
     const navigation = (path) => {
-        navigate(`/my-words/${id}/${path}`);
+        navigate(`/words/${id}/${path}`);
         setPage(path);
     };
 
