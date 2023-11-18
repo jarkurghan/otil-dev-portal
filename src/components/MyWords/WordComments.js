@@ -9,6 +9,12 @@ import Dislike from "../../assets/Icons/dislike";
 import LikePlus from "../../assets/Icons/like-plus";
 import View from "../../assets/Icons/view";
 import Reply from "../../assets/Icons/reply";
+import InputCommentary from "../../assets/inputs/commentary";
+import axios from "axios";
+import { useState } from "react";
+import { toast } from "react-toastify";
+import { useEffect } from "react";
+import lucatch from "../../assets/functions/catch";
 
 const comments = [
     {
@@ -65,16 +71,6 @@ const comments = [
         user_id: "lu0004",
         user_name: "Yahyo Usanov",
         comment:
-            "Laborum consequat ullamco aliquip aute minim laborum aliquip Lorem elit tempor eiusmod laborum. Laborum magna aliqua tempor labore. Quis reprehenderit mollit in ex aliquip sit consequat incididunt consequat deserunt. Ipsum Lorem officia officia est enim velit nostrud ex occaecat nostrud dolore culpa in fugiat. In proident nulla magna nostrud et velit reprehenderit. Excepteur Lorem magna exercitation mollit commodo elit do non nulla deserunt nulla irure aliqua.",
-        date: new Date(),
-
-        like: 2,
-        classable: true,
-    },
-    {
-        user_id: "lu0002",
-        user_name: "Mutal Burhonov",
-        comment:
             "Duis in esse anim duis aliquip amet cupidatat proident labore elit tempor dolor. Magna excepteur ut in elit sunt nostrud et nostrud ea et pariatur minim ullamco id. Ullamco nostrud laborum ad in commodo nulla qui ullamco sit dolore aliqua minim.",
         date: new Date(),
 
@@ -84,6 +80,30 @@ const comments = [
 ];
 
 export default function WordComments({ word }) {
+    const [comments, setComments] = useState([]);
+
+    const sendComment = () => {
+        const textElement = document.getElementById("send-comment");
+        const data = { comment: textElement.value };
+        axios
+            .post(`${process.env.REACT_APP_URL}/otil/v1/api/word/${word.id}/comment`, data, { headers: { Authorization: localStorage.getItem("token") } })
+            .then(() => {
+                getComments();
+                textElement.value = "";
+            })
+            .catch(lucatch);
+    };
+
+    const getComments = async () => {
+        await axios
+            .get(`${process.env.REACT_APP_URL}/otil/v1/api/word/${word.id}/comment`, { headers: { Authorization: localStorage.getItem("token") } })
+            .then((res) => setComments(res.data))
+            .catch(lucatch);
+    };
+
+    useEffect(() => {
+        getComments();
+    }, []);
     return (
         <div className="w-full flex justify-center my-5 px-2">
             <div className="max-w-7xl w-full">
@@ -96,13 +116,24 @@ export default function WordComments({ word }) {
                                 <Avatar color={"rgba(0, 0, 0, 0.4)"} />
                             </div>
                             <div className="row-span-2">
-                                <h1 className="text-xl text-slate-800 font-bold dark:text-white break-words max-w-[100%]">{comment.user_name}</h1>
+                                <h1 className="text-xl text-slate-800 font-bold dark:text-white break-words max-w-[100%]">
+                                    {comment.first_name} {comment.last_name}
+                                </h1>
                                 <div>{comment.comment}</div>
                                 <div className="flex gap-6">
-                                    <div className="flex items-center gap-1">
-                                        <LikePlus />
-                                        <span></span>
-                                    </div>
+                                    {comment.classable === false && (
+                                        <div className="flex items-center gap-1">
+                                            <LikePlus />
+                                            {comment.like === 1 && <span>You</span>}
+                                            {comment.like > 1 && <span>You and {comment.like - 1} others</span>}
+                                        </div>
+                                    )}
+                                    {comment.classable === null && (
+                                        <div className="flex items-center gap-1">
+                                            <Like />
+                                            <span>{comment.like ? comment.like : null}</span>
+                                        </div>
+                                    )}
                                     <div className="flex items-center gap-1">
                                         <Dislike />
                                         <span>&nbsp;</span>
@@ -121,7 +152,9 @@ export default function WordComments({ word }) {
                             </div>
                         </div>
                     ))}
-                    <div></div>
+                    <div>
+                        <InputCommentary send={sendComment} />
+                    </div>
                 </div>
             </div>
         </div>

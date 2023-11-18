@@ -2,15 +2,15 @@
 import React, { useEffect, useState } from "react";
 import lucatch from "../../assets/functions/catch";
 // import setCookie from "../../cookie/setCookie";
-import InputWord from "../CreateWord/inputs/word";
-import InputLanguage from "../CreateWord/inputs/language";
-import InputWordGroup from "../CreateWord/inputs/word-group";
-import InputDefinition from "../CreateWord/inputs/definition";
-import InputHistory from "../CreateWord/inputs/history";
-import ButtonSubmit from "../CreateWord/inputs/submit";
-import InputOtherForms2 from "../CreateWord/inputs/other-forms-2";
-import InputOtherForms from "../CreateWord/inputs/other-forms";
-import InputSource from "../CreateWord/inputs/source";
+import InputWord from "../../assets/inputs/word";
+import InputLanguage from "../../assets/inputs/language";
+import InputWordGroup from "../../assets/inputs/word-group";
+import InputDefinition from "../../assets/inputs/definition";
+import InputHistory from "../../assets/inputs/history";
+import ButtonSubmit from "../../assets/inputs/submit";
+import InputOtherForms2 from "../../assets/inputs/other-forms-2";
+import InputOtherForms from "../../assets/inputs/other-forms";
+import InputSource from "../../assets/inputs/source";
 import axios from "axios";
 
 export default function UpdateWord({ word, setWord }) {
@@ -43,7 +43,8 @@ export default function UpdateWord({ word, setWord }) {
     const submit = async () => {
         // setCookie("word", "", 0);
         // setPageStatus("new");
-        setWord({});
+
+        setWord({ definition: {}, history: {}, example: {}, other_forms: [], other_forms_2: [] });
 
         // validation
         // submit
