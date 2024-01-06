@@ -145,15 +145,15 @@ export default function UserPolicies() {
         <div className="relative overflow-x-auto sm:rounded-lg">
             {progress && <LUPopup rank={rank} />}
             {rows.length > 0 && (
-                <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400 max-w-6xl">
+                <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                     <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                         <tr>
                             <th scope="col" className="px-11 py-3">
                                 Name
                             </th>
                             {actions.map((e) => (
-                                <th scope="col" className="px-6 py-3 text-center" key={e.id}>
-                                    {e.description}
+                                <th scope="col" className="px-6 py-3 text-center" key={e.id}>{console.log(actions)}
+                                    {e.action}
                                 </th>
                             ))}
                             <th scope="col" className="px-6 py-3 text-center"></th>

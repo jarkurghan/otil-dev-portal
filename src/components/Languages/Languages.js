@@ -93,7 +93,7 @@ export default function Example() {
                         </ul>
                     </div>
                 </div>
-                <div className="my-10 lg:my-16 text-gray-700 mx-2">
+                <div className="text-gray-700 mx-2">
                     {/* <div className="sm:flex justify-between">
                         <div>
                             <h1 className="text-6xl font-semibold capitalize">{row?.language}</h1>
@@ -101,8 +101,8 @@ export default function Example() {
                         </div>
                         <div>Starts</div>
                     </div> */}
-                    {false && (
-                        <div className="my-8">
+
+                    {/*  <div className="my-8">
                             <h1 className="text-3xl font-semibold capitalize">Statistika</h1>
                             <div className="flex items-center mt-4">
                                 <span className="text-sm font-medium text-blue-600 dark:text-blue-500 hover:underline">8 star</span>
@@ -126,9 +126,10 @@ export default function Example() {
                                 <span className="text-sm font-medium text-gray-500 dark:text-gray-400">70%</span>
                             </div>
                         </div>
-                    )}
+                    */}
+
                     {row && (
-                        <div className="my-8">
+                        <div className="mt-8 mb-16">
                             <h1 className="text-3xl font-semibold">So'z turkumlari</h1>
                             {types.length === 0 && <div className="truncate text-lg font-medium text-indigo-600">So'z turkumi qo'shing</div>}
                             <div className="overflow-hidden bg-white shadow sm:rounded-lg">
@@ -140,7 +141,7 @@ export default function Example() {
                             </div>
                         </div>
                     )}
-                    <div className="my-8">
+                    <div>
                         <h1 className="text-3xl font-semibold">Qo'shish</h1>
                         <div>
                             {row && (

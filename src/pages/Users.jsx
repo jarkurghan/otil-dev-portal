@@ -15,25 +15,15 @@ const Users = () => {
         <div className="mx-5 mt-5">
             <UsersTable setLoading={setLoading} />
             {loading ? (
-                <div
-                    style={{
-                        marginTop: "100px",
-                        display: "flex",
-                        justifyContent: "center",
-                        alignItems: "center",
-                    }}
-                >
+                <div style={{ marginTop: "100px", display: "flex", justifyContent: "center", alignItems: "center" }}>
                     <Spinner radius={150} color={"#1976d2"} stroke={16} visible={true} />
                 </div>
             ) : (
                 <>
                     <UserPolicies />
                     <CreateUser open={open} setOpen={setOpen} />
-                    <div className="h-16 text-left max-w-6xl ">
-                        <button
-                            // onClick={() => setOpen(true)}
-                            className="bg-indigo-300 hover:bg-indigo-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center my-3 mx-10"
-                        >
+                    <div className="h-16 text-left">
+                        <button onClick={() => setOpen(true)} className="bg-indigo-300 hover:bg-indigo-400 text-gray-800 font-bold py-2 px-4 rounded my-4">
                             Create User
                         </button>
                     </div>

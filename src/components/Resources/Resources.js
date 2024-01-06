@@ -37,7 +37,7 @@ export default function Resources() {
     return (
         <div className="2xl:mx-40 xl:mx-20 py-6 sm:px-6 lg:px-8 relative overflow-x-auto">
             {rows.length > 0 && (
-                <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400 mb-10">
                     <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400 sm:table-header-group hidden">
                         <tr>
                             <th scope="col" className="px-6 py-3 sm:table-cell hidden">
@@ -79,8 +79,8 @@ export default function Resources() {
                 </table>
             )}
 
-            <div className="h-16 text-left max-w-6xl ">
-                <div className="inline-block w-fit h-fit my-3 mx-10" onClick={() => navigate("/create-resource")}>
+            <div className="h-16 text-left">
+                <div className="inline-block w-fit h-fit my-3" onClick={() => navigate("/create-resource")}>
                     <button className="bg-indigo-300 hover:bg-indigo-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center">
                         Create Resource
                     </button>

@@ -4,6 +4,7 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import { useEffect } from "react";
 import { useState } from "react";
+import lucatch from "../../assets/functions/catch";
 
 export default function UsersTable({ setLoading }) {
     const [rows, setRows] = useState([]);
@@ -24,24 +25,16 @@ export default function UsersTable({ setLoading }) {
     const getStatuses = async () => {
         await axios
             .get(`${process.env.REACT_APP_URL}/otil/v1/api/user/status`, {
-                headers: {
-                    Authorization: localStorage.getItem("token"),
-                },
+                headers: { Authorization: localStorage.getItem("token") },
             })
-            .then((res) => {
-                setStatuses(res.data);
-            })
-            .catch((err) => {
-                toast.error("An error occurred");
-            });
+            .then((res) => setStatuses(res.data))
+            .catch(lucatch);
     };
 
     const getUsers = async () => {
         await axios
             .get(`${process.env.REACT_APP_URL}/otil/v1/api/user`, {
-                headers: {
-                    Authorization: localStorage.getItem("token"),
-                },
+                headers: { Authorization: localStorage.getItem("token") },
             })
             .then((res) => {
                 let x = [];
@@ -49,37 +42,42 @@ export default function UsersTable({ setLoading }) {
                 setData(x);
                 setRows(res.data);
             })
-            .catch((err) => {
-                console.log(err);
-                toast.error("An error occurred");
-            });
+            .catch(lucatch);
     };
 
     const submit = async (body) => {
         await axios
             .put(`${process.env.REACT_APP_URL}/otil/v1/api/user`, body, {
-                headers: {
-                    Authorization: localStorage.getItem("token"),
-                },
+                headers: { Authorization: localStorage.getItem("token") },
             })
-            .then(async (res) => {
+            .then(async () => {
                 await getUsers();
                 toast.success("Successfully updated!");
             })
-            .catch((err) => {
-                console.log(err);
-                toast.error("An error occurred");
-            });
+            .catch(lucatch);
     };
 
     function isChange(i) {
-        if (data[i].name !== rows[i].name || data[i].email !== rows[i].email || data[i].role !== rows[i].role || data[i].status !== rows[i].status) return true;
+        if (
+            data[i].first_name !== rows[i].first_name ||
+            data[i].last_name !== rows[i].last_name ||
+            data[i].email !== rows[i].email ||
+            data[i].phone !== rows[i].phone ||
+            data[i].status !== rows[i].status
+        )
+            return true;
         else return false;
     }
 
     function isChange2() {
         for (let i = 0; i < data.length; i++) {
-            if (data[i].name !== rows[i].name || data[i].email !== rows[i].email || data[i].role !== rows[i].role || data[i].status !== rows[i].status)
+            if (
+                data[i].first_name !== rows[i].first_name ||
+                data[i].last_name !== rows[i].last_name ||
+                data[i].email !== rows[i].email ||
+                data[i].phone !== rows[i].phone ||
+                data[i].status !== rows[i].status
+            )
                 return true;
         }
         return false;
@@ -94,7 +92,7 @@ export default function UsersTable({ setLoading }) {
     return (
         <div className="relative overflow-x-auto sm:rounded-lg mb-5">
             {rows.length > 0 && (
-                <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400 max-w-6xl">
+                <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                     <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                         <tr>
                             <th scope="col" className="px-6 py-3">
@@ -233,9 +231,7 @@ export default function UsersTable({ setLoading }) {
                                             cancelChange();
                                         }}
                                         className="bg-rose-300 hover:bg-rose-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center my-2"
-                                        style={{
-                                            visibility: !isChange(ind) ? "hidden" : "visible",
-                                        }}
+                                        style={{ visibility: !isChange(ind) ? "hidden" : "visible" }}
                                     >
                                         cancel
                                     </button>
