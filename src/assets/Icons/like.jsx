@@ -6,7 +6,7 @@ const Like = () => {
             <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
             <g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round" stroke="#CCCCCC" strokeWidth="0.126"></g>
             <g id="SVGRepo_iconCarrier">
-                <title>like [#1385]</title> <desc>Created with Sketch.</desc> <defs> </defs>
+                <title>like</title> <desc></desc> <defs> </defs>
                 <g id="Page-1" strokeWidth="0.00021000000000000004" fill="none" fillRule="evenodd">
                     <g id="Dribbble-Light-Preview" transform="translate(-259.000000, -760.000000)" fill="#555">
                         <g id="icons" transform="translate(56.000000, 160.000000)">

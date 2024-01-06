@@ -24,19 +24,20 @@ export default function Resources() {
             .catch(lucatch);
     };
 
-    const getResourceFile = async (id) => {
-        fetch(`${process.env.REACT_APP_URL}/otil/v1/api/resource/file/${id}`, {
+    const getResourceFile = async (row) => {
+        console.log(row);
+        fetch(`${process.env.REACT_APP_URL}/otil/v1/api/resource/file/${row.id}`, {
             headers: { Authorization: localStorage.getItem("token"), "Content-type": "application/pdf" },
         })
             .then((res) => res.blob())
-            .then((blob) => FileSaver.saveAs(blob, id))
+            .then((blob) => FileSaver.saveAs(blob, row.name))
             .catch(lucatch);
     };
 
     return (
-        <div className="2xl:mx-20 relative overflow-x-auto sm:rounded-lg py-5">
+        <div className="2xl:mx-40 xl:mx-20 py-6 sm:px-6 lg:px-8 relative overflow-x-auto">
             {rows.length > 0 && (
-                <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400 max-w-6xl">
+                <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                     <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400 sm:table-header-group hidden">
                         <tr>
                             <th scope="col" className="px-6 py-3 sm:table-cell hidden">
@@ -66,7 +67,7 @@ export default function Resources() {
                                     </a>
                                 </td>
                                 <td className="px-1 sm:px-2 text-center">
-                                    <div className="inline-block w-fit h-fit my-2" onClick={() => getResourceFile(row.id)}>
+                                    <div className="inline-block w-fit h-fit my-2" onClick={() => getResourceFile(row)}>
                                         <button className="bg-indigo-300 hover:bg-indigo-400 text-gray-800 font-bold py-2 px-6 rounded inline-flex items-center">
                                             download
                                         </button>

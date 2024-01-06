@@ -28,12 +28,12 @@ const createWord = Joi.object({
             return errors;
         }),
     definition: Joi.object({
-        definition: Joi.string().optional(),
-        resource: Joi.string().when("definition", { is: Joi.exist(), then: Joi.required(), otherwise: Joi.forbidden() }),
-        page: Joi.string().when("definition", { is: Joi.exist(), then: Joi.required(), otherwise: Joi.forbidden() }),
+        definition: Joi.string().required(),
+        resource: Joi.string().required(),
+        page: Joi.string().required(),
     }).error((errors) => {
         console.log(errors[0].code);
-        errors[0].message = "definition is incomplete. fill or remove";
+        errors[0].message = "definition is incomplete";
         return errors;
     }),
     example: Joi.object({

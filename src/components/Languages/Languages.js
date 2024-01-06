@@ -1,11 +1,12 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useState, useEffect } from "react";
-import Item from "./TableItem";
+import Item from "./ItemLanguages";
+import Types from "./ItemWordTypes";
 import axios from "axios";
 import { toast } from "react-toastify";
 const addlangdef = { language: "", description: "" };
-const addtypedef = "";
+const addtypedef = { type: "", description: "" };
 
 export default function Example() {
     const [rows, setRows] = useState([]);
@@ -18,6 +19,7 @@ export default function Example() {
     useEffect(() => {
         gets();
     }, []);
+
     useEffect(() => {
         if (row) wordTypes();
         clear();
@@ -63,10 +65,10 @@ export default function Example() {
         await axios
             .post(
                 `${process.env.REACT_APP_URL}/otil/v1/api/language/type`,
-                { language: row.id, type: addType },
+                { language: row.id, ...addType },
                 { headers: { Authorization: localStorage.getItem("token") } }
             )
-            .then(async (res) => await gets())
+            .then(async () => await gets())
             .catch((err) => {
                 console.log(err);
                 toast.error("An error occurred");
@@ -92,13 +94,13 @@ export default function Example() {
                     </div>
                 </div>
                 <div className="my-10 lg:my-16 text-gray-700 mx-2">
-                    <div className="sm:flex justify-between">
+                    {/* <div className="sm:flex justify-between">
                         <div>
                             <h1 className="text-6xl font-semibold capitalize">{row?.language}</h1>
                             <h2 className="text-lg md:text-xl capitalize">{row?.description}</h2>
                         </div>
                         <div>Starts</div>
-                    </div>
+                    </div> */}
                     {false && (
                         <div className="my-8">
                             <h1 className="text-3xl font-semibold capitalize">Statistika</h1>
@@ -128,10 +130,11 @@ export default function Example() {
                     {row && (
                         <div className="my-8">
                             <h1 className="text-3xl font-semibold">So'z turkumlari</h1>
+                            {types.length === 0 && <div className="truncate text-lg font-medium text-indigo-600">So'z turkumi qo'shing</div>}
                             <div className="overflow-hidden bg-white shadow sm:rounded-lg">
                                 <ul className="divide-y divide-gray-200">
                                     {types.map((e) => (
-                                        <Item key={e.id} data={e} />
+                                        <Types key={e.id} data={e} />
                                     ))}
                                 </ul>
                             </div>
@@ -203,10 +206,19 @@ export default function Example() {
                                 <div className="xl:mr-2 w-full max-w-[400px]">
                                     <span className="py-2 font-semibold">word type:</span>
                                     <input
-                                        defaultValue={addType}
-                                        onChange={(e) => setAddType(e.target.value)}
+                                        defaultValue={addType.type}
+                                        onChange={(e) => setAddType({ type: e.target.value, description: addType.description })}
                                         className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                     />
+                                </div>
+                                <div className="xl:mr-2 w-full max-w-[400px]">
+                                    <span className="py-2 font-semibold">description:</span>
+                                    <textarea
+                                        rows="4"
+                                        defaultValue={addType.description}
+                                        onChange={(e) => setAddType({ type: addType.type, description: e.target.value })}
+                                        className="resize-none block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 outline-none focus:outline-none"
+                                    ></textarea>
                                 </div>
                                 <button
                                     onClick={addWordType}
