@@ -13,6 +13,7 @@ import MyWordsPage from "./pages/MyWords";
 import ResourcesPage from "./pages/Resources";
 import CreateResource from "./pages/CreateResource";
 import WordDetailsPage from "./pages/WordDetails";
+import CreateUserPage from "./pages/CreateUser";
 
 function App() {
     const token = localStorage.getItem("token");
@@ -35,6 +36,7 @@ function App() {
                         <Route path="/resources" element={<ResourcesPage />} />
                         <Route path="/create-resource" element={<CreateResource />} />
                         <Route path="/users" element={<Users />} />
+                        <Route path="/create-user" element={<CreateUserPage />} />
                     </Routes>
                 </>
             ) : (

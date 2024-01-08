@@ -24,7 +24,7 @@ const CreateResource = () => {
 
         await axios
             .post(`${process.env.REACT_APP_URL}/otil/v1/api/resource`, data, { headers: { Authorization: localStorage.getItem("token") } })
-            .then(() => navigate("/create-resource"))
+            .then(() => navigate("/resources"))
             .catch(lucatch);
     };
 
