@@ -1,14 +1,14 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react-hooks/exhaustive-deps */
 import React from "react";
-import Avatar from "../../assets/Icons/Avatar";
-import stringToColor from "../../assets/functions/stringToColor";
+import Avatar from "../../../assets/Icons/Avatar";
+import stringToColor from "../../../assets/functions/stringToColor";
 import styles from "./style.module.css";
-import Like from "../../assets/Icons/like";
-import Dislike from "../../assets/Icons/dislike";
-import LikePlus from "../../assets/Icons/like-plus";
-import Reply from "../../assets/Icons/reply";
-import DislikePlus from "../../assets/Icons/dislike-plus";
+import Like from "../../../assets/Icons/like";
+import Dislike from "../../../assets/Icons/dislike";
+import LikePlus from "../../../assets/Icons/like-plus";
+import Reply from "../../../assets/Icons/reply";
+import DislikePlus from "../../../assets/Icons/dislike-plus";
 
 export default function WordCommentItem({ comment, comments, setReplied, like, className: clas }) {
     return (

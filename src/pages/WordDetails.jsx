@@ -1,11 +1,13 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react";
-import WordDetailsMenu from "../components/MyWords/WordDetailsMenu";
-import CurrentWord from "../components/MyWords/CurrentWord";
-import WordSettings from "../components/MyWords/WordSettings";
+import WordDetailsMenu from "../components/MyWords/Details/Navbar-Menu";
+import CurrentWord from "../components/MyWords/Details/CurrentWord";
+import WordSettings from "../components/MyWords/Details/Settings";
 import axios from "axios";
 import lucatch from "../assets/functions/catch";
-import WordComments from "../components/MyWords/WordComments";
+import WordComments from "../components/MyWords/Details/Comments";
+import WordInfo from "../components/MyWords/Details/Info";
 
 const WordDetailsPage = () => {
     const page = "words";
@@ -30,7 +32,7 @@ const WordDetailsPage = () => {
 
     const getWordInfo = async () => {
         await axios
-            .get(`${process.env.REACT_APP_URL}/otil/v1/api/word/${id}`, { headers: { Authorization: localStorage.getItem("token") } })
+            .get(`${process.env.REACT_APP_URL}/otil/v1/api/word/${id}/info`, { headers: { Authorization: localStorage.getItem("token") } })
             .then((res) => {
                 if (!res.data.definition) res.data.definition = {};
                 if (!res.data.history) res.data.history = {};
@@ -45,11 +47,11 @@ const WordDetailsPage = () => {
     return (
         <div>
             <WordDetailsMenu id={id} page={content} setPage={setContent} />
-            <CurrentWord id={id} />
+            <CurrentWord word={currenWord} />
             {(() => {
                 switch (content) {
                     case "details":
-                        return <>details</>;
+                        return <WordInfo word={currenWord} />;
                     case "comments":
                         return <WordComments word={currenWord} />;
                     case "settings":

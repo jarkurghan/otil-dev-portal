@@ -15,8 +15,13 @@ export default function WordDetailsMenu({ id, page, setPage }) {
             <div className="px-4 mx-auto md:ml-10 lg:ml-20">
                 <div className="flex items-center justify-center sm:justify-normal">
                     <ul className="flex flex-row font-medium mt-0 mr-6 text-sm">
-                        <li className="bg-slate-100">
-                            <span className={cn("inline-block px-4 h-full bg-lime-950/10", { "rounded-br-xl": page === "details" })}></span>
+                        <li className="text-gray-900 dark:text-white bg-slate-100 cursor-pointer">
+                            <span
+                                className={cn("inline-block px-4 py-3 h-full bg-lime-950/10", { "rounded-br-xl": page === "details" })}
+                                onClick={() => navigate("/words")}
+                            >
+                                Ortga
+                            </span>
                         </li>
                         <li className={cn("text-gray-900 dark:text-white bg-slate-100 cursor-pointer", { "rounded-t-lg": page === "details" })}>
                             <span

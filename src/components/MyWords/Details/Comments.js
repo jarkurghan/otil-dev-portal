@@ -1,12 +1,12 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react-hooks/exhaustive-deps */
 import React from "react";
-import InputCommentary from "../../assets/inputs/commentary";
+import InputCommentary from "../../../assets/inputs/commentary";
 import axios from "axios";
 import { useState } from "react";
 import { useEffect } from "react";
-import lucatch from "../../assets/functions/catch";
-import WordCommentItem from "./WordCommentItem";
+import lucatch from "../../../assets/functions/catch";
+import WordCommentItem from "./CommentItem";
 
 export default function WordComments({ word }) {
     const [comments, setComments] = useState([]);
@@ -45,8 +45,7 @@ export default function WordComments({ word }) {
         getComments();
     }, []);
     return (
-        <div className="w-full flex justify-center my-5 px-2">
-            <div className="max-w-7xl w-full">
+        <div className="max-w-7xl my-5 px-2 mx-auto">
                 <h1 className="text-3xl text-slate-800 font-bold dark:text-white my-2">Comments</h1>
                 <div>
                     {comments.map((comment, index) => (
@@ -72,6 +71,6 @@ export default function WordComments({ word }) {
                     </div>
                 </div>
             </div>
-        </div>
+        // </div>
     );
 }

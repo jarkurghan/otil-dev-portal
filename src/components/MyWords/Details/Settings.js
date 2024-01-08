@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React from "react";
-import UpdateWord from "./UpdateWord";
+import UpdateWord from "./Update";
 
 export default function WordSettings({ word, setWord }) {
     return (

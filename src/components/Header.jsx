@@ -3,7 +3,7 @@ import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { NavLink, useNavigate } from "react-router-dom";
 import Avatar from "@mui/material/Avatar";
-import logo from "../assets/favicon.ico";
+import logo from "../assets/favicon.png";
 
 const navigation = [
     { name: "Create word", to: "/new-word", current: true },
@@ -40,15 +40,10 @@ export default function Example() {
                                 <div className="flex h-16 items-center justify-between">
                                     <div className="flex items-center">
                                         <div className="flex-shrink-0">
-                                            <img
-                                                className="h-8 w-8"
-                                                // src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
-                                                src={logo}
-                                                alt="Your Company"
-                                            />
+                                            <img className="h-4 w-5" src={logo} alt="Your Company" />
                                         </div>
                                         <div className="hidden md:block">
-                                            <div className="ml-10 flex items-baseline space-x-4">
+                                            <div className="ml-4 flex items-baseline space-x-4">
                                                 {navigation.map((item) => (
                                                     <NavLink
                                                         key={item.name}
