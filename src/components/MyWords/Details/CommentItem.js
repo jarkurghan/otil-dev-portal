@@ -22,7 +22,7 @@ export default function WordCommentItem({ comment, comments, setReplied, like, c
                     {comment.first_name} {comment.last_name}
                 </h1>
                 {comment.reply && comments?.find((e) => e?.id === comment.reply) && (
-                    <div className="opacity-70 pl-2 mr-4 pr-6 w-[max(200px, 200px)] h-[60px] border-l-4 border-indigo-900 bg-indigo-100 whitespace-nowrap overflow-hidden text-ellipsis relative">
+                    <div className="opacity-70 pl-2 mr-4 pr-6 w-[max(200px, 200px)] h-[60px] border-l-4 border-indigo-900 bg-indigo-100 whitespace-wrap overflow-hidden text-ellipsis relative">
                         <WordCommentItem comment={comments?.find((e) => e?.id === comment.reply)} like={like} setReplied={setReplied} className={"mt-1"} />
                     </div>
                 )}

@@ -5,12 +5,15 @@ import { toast } from "react-toastify";
 import { useEffect } from "react";
 import { useState } from "react";
 import lucatch from "../../assets/functions/catch";
+import { useTranslation } from "react-i18next";
 
 export default function UsersTable({ setLoading }) {
     const [rows, setRows] = useState([]);
     const [statuses, setStatuses] = useState([]);
     const [data, setData] = useState([]);
     const [select, setSelect] = useState(null);
+    const { t } = useTranslation();
+
     useEffect(() => {
         gets();
     }, []);
@@ -96,25 +99,25 @@ export default function UsersTable({ setLoading }) {
                     <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                         <tr>
                             <th scope="col" className="px-6 py-3">
-                                <span className="mx-5 my-4">ID</span>
+                                <span className="mx-5 my-4">{t("id")}</span>
                             </th>
                             <th scope="col" className="px-6 py-3">
-                                <span className="mx-5 my-4">User ID</span>
+                                <span className="mx-5 my-4">{t("user id")}</span>
                             </th>
                             <th scope="col" className="px-6 py-3">
-                                <span className="mx-5 my-4">First Name</span>
+                                <span className="mx-5 my-4">{t("first name")}</span>
                             </th>
                             <th scope="col" className="px-6 py-3">
-                                <span className="mx-5 my-4">Last Name</span>
+                                <span className="mx-5 my-4">{t("last name")}</span>
                             </th>
                             <th scope="col" className="px-6 py-3">
-                                <span className="mx-5 my-4"> Email</span>
+                                <span className="mx-5 my-4"> {t("email")}</span>
                             </th>
                             <th scope="col" className="px-6 py-3">
-                                <span className="mx-5 my-4"> Phone</span>
+                                <span className="mx-5 my-4"> {t("phone")}</span>
                             </th>
                             <th scope="col" className="px-6 py-3">
-                                <span className="mx-10 my-4"> Status</span>
+                                <span className="mx-10 my-4"> {t("status")}</span>
                             </th>
                             <th scope="col" className="px-6 py-3"></th>
                             <th scope="col" className="px-6 py-3"></th>
@@ -233,7 +236,7 @@ export default function UsersTable({ setLoading }) {
                                         className="bg-rose-300 hover:bg-rose-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center my-2"
                                         style={{ visibility: !isChange(ind) ? "hidden" : "visible" }}
                                     >
-                                        cancel
+                                        {t("cancel")}
                                     </button>
                                 </td>
                                 <td className="px-6 text-center">
@@ -242,7 +245,7 @@ export default function UsersTable({ setLoading }) {
                                             onClick={(e) => setSelect(null)}
                                             className="bg-green-300 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center my-2"
                                         >
-                                            <div style={{ width: "60px" }}>done</div>
+                                            <div style={{ width: "60px" }}>{t("done")}</div>
                                         </button>
                                     ) : isChange(ind) ? (
                                         <button
@@ -252,17 +255,15 @@ export default function UsersTable({ setLoading }) {
                                             }}
                                             className="bg-green-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center my-2"
                                         >
-                                            <div style={{ width: "60px" }}>save</div>
+                                            <div style={{ width: "60px" }}>{t("save")}</div>
                                         </button>
                                     ) : (
                                         <button
                                             onClick={(e) => setSelect(row.id)}
                                             className="bg-indigo-300 hover:bg-indigo-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center my-2"
-                                            style={{
-                                                visibility: select !== null || isChange2() ? "hidden" : "visible",
-                                            }}
+                                            style={{ visibility: select !== null || isChange2() ? "hidden" : "visible" }}
                                         >
-                                            <div style={{ width: "60px" }}>change</div>
+                                            <div style={{ width: "60px" }}>{t("change")}</div>
                                         </button>
                                     )}
                                 </td>
