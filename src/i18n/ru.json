@@ -8,8 +8,9 @@
 
     "submit": "Отправка",
 
-    "are you sure you want to create the word (1)": "Вы уверены, что хотите создать слово",
+    "are you sure you want to create the word (1)": "Вы уверены, что хотите создать слово ",
     "are you sure you want to create the word (2)": "?",
+    "this word already exists": "это слово уже существует",
     "yes": "Да",
     "no": "Нет",
 

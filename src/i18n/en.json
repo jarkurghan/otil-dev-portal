@@ -8,8 +8,9 @@
 
     "submit": "Submit",
 
-    "are you sure you want to create the word (1)": "Are you sure you want to create the word",
+    "are you sure you want to create the word (1)": "Are you sure you want to create the word ",
     "are you sure you want to create the word (2)": "?",
+    "this word already exists": "this word already exists",
     "yes": "Yes",
     "no": "No",
 

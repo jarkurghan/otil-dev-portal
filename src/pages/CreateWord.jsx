@@ -11,6 +11,7 @@ import CreatedWord from "../components/CreateWord/CreateWord";
 import "../components/CreateWord/style.css";
 import setCookie from "../cookie/setCookie";
 import getCookie from "../cookie/getCookie";
+import AlreadyExists from "../components/CreateWord/AlreadyExists";
 
 const CreateWord = () => {
     const [pageStatus, setPageStatus] = useState("new");
@@ -67,10 +68,8 @@ const CreateWord = () => {
             newword.definition = {};
             newword.history = {};
             newword.example = {};
-            newword.other_forms = [];
-            newword.other_forms_2 = [];
-            newword.other_forms_text = "";
-            newword.other_forms_2_text = "";
+            newword.synonyms = [];
+            newword.synonyms_text = "";
             newword.language = "";
             newword.word_group = "";
             setWordObj(newword);
@@ -93,7 +92,7 @@ const CreateWord = () => {
                     ) : pageStatus === "exists" ? (
                         <>
                             <NewWord checkNewWord={checkNewWord} disable={disableNewWord} />
-                            Exists
+                            <AlreadyExists setStatus={setCreateStatus} word={wordObj} />
                         </>
                     ) : pageStatus === "not found" ? (
                         <>

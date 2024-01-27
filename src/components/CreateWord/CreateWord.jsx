@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react";
 import setCookie from "../../cookie/setCookie";
@@ -8,7 +9,6 @@ import InputDefinition from "../../assets/inputs/definition";
 import InputHistory from "../../assets/inputs/history";
 import InputSource from "../../assets/inputs/source";
 import InputOtherForms from "../../assets/inputs/other-forms";
-import InputOtherForms2 from "../../assets/inputs/other-forms-2";
 import ButtonSubmit from "../../assets/inputs/submit";
 import axios from "axios";
 import lucatch from "../../assets/functions/catch";
@@ -84,7 +84,6 @@ export default function CreatedWord({ word, setWord, setPageStatus }) {
                 <InputHistory word={word} setWord={setWord} resources={resources} />
                 <InputSource word={word} setWord={setWord} resources={resources} />
                 <InputOtherForms word={word} setWord={setWord} />
-                <InputOtherForms2 word={word} setWord={setWord} />
                 <ButtonSubmit submit={submit} />
             </div>
         </div>

@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react";
 import lucatch from "../../../assets/functions/catch";
@@ -8,7 +9,6 @@ import InputWordGroup from "../../../assets/inputs/word-group";
 import InputDefinition from "../../../assets/inputs/definition";
 import InputHistory from "../../../assets/inputs/history";
 import ButtonSubmit from "../../../assets/inputs/submit";
-import InputOtherForms2 from "../../../assets/inputs/other-forms-2";
 import InputOtherForms from "../../../assets/inputs/other-forms";
 import InputSource from "../../../assets/inputs/source";
 import axios from "axios";
@@ -44,7 +44,7 @@ export default function UpdateWord({ word, setWord }) {
         // setCookie("word", "", 0);
         // setPageStatus("new");
 
-        setWord({ definition: {}, history: {}, example: {}, other_forms: [], other_forms_2: [] });
+        setWord({ definition: {}, history: {}, example: {}, synonyms: [] });
 
         // validation
         // submit
@@ -73,7 +73,6 @@ export default function UpdateWord({ word, setWord }) {
                 <InputHistory word={word} setWord={setWord} resources={resources} />
                 <InputSource word={word} setWord={setWord} resources={resources} />
                 <InputOtherForms word={word} setWord={setWord} />
-                <InputOtherForms2 word={word} setWord={setWord} />
                 <ButtonSubmit submit={submit} />
             </div>
         </div>

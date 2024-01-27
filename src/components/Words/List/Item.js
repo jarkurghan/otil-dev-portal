@@ -21,11 +21,32 @@ export default function Item({ data }) {
                     {t("details")}
                 </button>
             </div>
-            <div className="h-6 px-2">status</div>
-            {/* status uchun rang */}
-            {/* created_by */}
-            {/* commentlar soni */}
-            {/* ko'rishlar soni soni */}
+            <div className="h-6 px-2 text-[13.4px] text-[#888] font-semibold uppercase">
+                <div className={`w-[10px] h-[10px] inline-block rounded-full bg-[${statusToColor(data.status)}]`}></div>
+                <div className="sm:inline-block hidden">
+                    &nbsp; {data.first_name}&nbsp;{data.last_name}
+                </div>
+                <span>&nbsp; &#9997;{+data.comments}</span>
+                <span>&nbsp; &#128065;{+data.views}</span>
+            </div>
         </div>
     );
 }
+
+const statusToColor = (status) => {
+    switch (status) {
+        case "new":
+            return "#50d71e";
+        case "consideration":
+            return "#50d71e";
+        case "unsatisfied":
+            return "#50d71e";
+        case "active":
+            return "#50d71e";
+        case "remove":
+            return "#50d71e";
+
+        default:
+            return "#50d71e";
+    }
+};
