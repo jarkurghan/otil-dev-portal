@@ -1,16 +1,16 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react";
-import lucatch from "../../assets/functions/catch";
+import lucatch from "../../../assets/functions/catch";
 // import setCookie from "../../cookie/setCookie";
-import InputWord from "../../assets/inputs/word";
-import InputLanguage from "../../assets/inputs/language";
-import InputWordGroup from "../../assets/inputs/word-group";
-import InputDefinition from "../../assets/inputs/definition";
-import InputHistory from "../../assets/inputs/history";
-import ButtonSubmit from "../../assets/inputs/submit";
-import InputOtherForms2 from "../../assets/inputs/other-forms-2";
-import InputOtherForms from "../../assets/inputs/other-forms";
-import InputSource from "../../assets/inputs/source";
+import InputWord from "../../../assets/inputs/word";
+import InputLanguage from "../../../assets/inputs/language";
+import InputWordGroup from "../../../assets/inputs/word-group";
+import InputDefinition from "../../../assets/inputs/definition";
+import InputHistory from "../../../assets/inputs/history";
+import ButtonSubmit from "../../../assets/inputs/submit";
+import InputOtherForms2 from "../../../assets/inputs/other-forms-2";
+import InputOtherForms from "../../../assets/inputs/other-forms";
+import InputSource from "../../../assets/inputs/source";
 import axios from "axios";
 
 export default function UpdateWord({ word, setWord }) {

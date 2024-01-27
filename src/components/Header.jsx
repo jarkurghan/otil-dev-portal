@@ -1,34 +1,52 @@
-import { Fragment } from "react";
+/* eslint-disable no-unused-vars */
+import { Fragment, useState } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { NavLink, useNavigate } from "react-router-dom";
 import Avatar from "@mui/material/Avatar";
-import logo from "../assets/favicon.ico";
+import logo from "../assets/favicon.png";
+import { Select } from "@mui/material";
+import MenuItem from "@mui/material/MenuItem";
+import en from "../assets/Icons/en.png";
+import uz from "../assets/Icons/uz.png";
+import ru from "../assets/Icons/ru.png";
+import Cookies from "js-cookie";
+import { useTranslation } from "react-i18next";
 
-const navigation = [
-    { name: "Create word", to: "/new-word", current: true },
-    { name: "Words", to: "/words", current: false },
-    { name: "Languages", to: "/languages", current: false },
-    { name: "Resources", to: "/resources", current: false },
-    { name: "Users", to: "/users", current: false },
-];
-// if (localStorage.getItem("secret_key")) {
-//   navigation.push(
-//     { name: "Secret keys", to: "/secret-keys", current: false },
-//     { name: "Databases", to: "/databases", current: false }
-//   );
-// }
-
-const navigation2 = [
-    { name: "Secret keys", to: "/secret-keys", current: false },
-    { name: "Databases", to: "/databases", current: false },
-];
 export default function Example() {
+    const { t, i18n } = useTranslation();
     const navigate = useNavigate();
+    // const [lang, setlang] = useState("uz");
+    const [lang, setlang] = useState(Cookies.get("i18next"));
     const logout = () => {
         localStorage.clear();
         navigate("/");
     };
+
+    const onLanguage = (e) => {
+        const lng = e.target.value;
+        i18n.changeLanguage(lng);
+        setlang(lng);
+    };
+
+    const navigation = [
+        { name: t("Create word"), to: "/new-word", current: true },
+        { name: t("Words"), to: "/words", current: false },
+        { name: t("Languages"), to: "/languages", current: false },
+        { name: t("Resources"), to: "/resources", current: false },
+        { name: t("Users"), to: "/users", current: false },
+    ];
+    // if (localStorage.getItem("secret_key")) {
+    //   navigation.push(
+    //     { name: "Secret keys", to: "/secret-keys", current: false },
+    //     { name: "Databases", to: "/databases", current: false }
+    //   );
+    // }
+
+    const navigation2 = [
+        { name: t("Secret keys"), to: "/secret-keys", current: false },
+        { name: t("Databases"), to: "/databases", current: false },
+    ];
 
     return (
         <>
@@ -40,15 +58,10 @@ export default function Example() {
                                 <div className="flex h-16 items-center justify-between">
                                     <div className="flex items-center">
                                         <div className="flex-shrink-0">
-                                            <img
-                                                className="h-8 w-8"
-                                                // src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
-                                                src={logo}
-                                                alt="Your Company"
-                                            />
+                                            <img className="h-4 w-5" src={logo} alt="Your Company" />
                                         </div>
                                         <div className="hidden md:block">
-                                            <div className="ml-10 flex items-baseline space-x-4">
+                                            <div className="ml-4 flex items-baseline space-x-4">
                                                 {navigation.map((item) => (
                                                     <NavLink
                                                         key={item.name}
@@ -86,11 +99,31 @@ export default function Example() {
                                                 </button>
                                             )}
 
+                                            <div>
+                                                {/* <select value={lang} size="small" onChange={onLanguage}>
+                                                    <option value="en">
+                                                        <img style={{ width: "23px" }} src={en} alt="en" />
+                                                    </option>
+                                                    <option value="uz">
+                                                        <img style={{ width: "23px" }} src={uz} alt="uz" />
+                                                    </option>
+                                                </select> */}
+                                                <Select value={lang} size="small" onChange={onLanguage} className="bg-slate-300 mr-4">
+                                                    <MenuItem value="uz">
+                                                        <img style={{ width: "23px" }} src={uz} alt="uz" />
+                                                    </MenuItem>
+                                                    <MenuItem value="ru">
+                                                        <img style={{ width: "23px" }} src={ru} alt="ru" />
+                                                    </MenuItem>
+                                                    <MenuItem value="en">
+                                                        <img style={{ width: "23px" }} src={en} alt="en" />
+                                                    </MenuItem>
+                                                </Select>
+                                            </div>
                                             {/* Profile dropdown */}
                                             <Menu as="div" className="relative ml-3">
                                                 <div>
                                                     <Menu.Button className="flex max-w-xs items-center rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
-                                                        <span className="sr-only">Open user menu</span>
                                                         <Avatar sx={{ width: 24, height: 24 }} />
                                                     </Menu.Button>
                                                 </div>
@@ -106,7 +139,7 @@ export default function Example() {
                                                     <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                                                         <Menu.Item>
                                                             <NavLink to="/sign-out" onClick={logout} className="block px-4 py-2 text-sm text-gray-700">
-                                                                Log Out
+                                                                {t("Log Out")}
                                                             </NavLink>
                                                         </Menu.Item>
                                                     </Menu.Items>
@@ -116,7 +149,6 @@ export default function Example() {
                                     </div>
                                     <div className="-mr-2 flex md:hidden">
                                         <Disclosure.Button className="inline-flex items-center justify-center rounded-md bg-gray-800 p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
-                                            <span className="sr-only">Open main menu</span>
                                             {open ? (
                                                 <XMarkIcon className="block h-6 w-6" aria-hidden="true" />
                                             ) : (
@@ -177,7 +209,7 @@ export default function Example() {
                                             onClick={logout}
                                             className="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white"
                                         >
-                                            Log Out
+                                            {t("Log Out")}
                                         </NavLink>
                                     </div>
                                 </div>

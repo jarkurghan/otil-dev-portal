@@ -7,9 +7,11 @@ import { useState } from "react";
 import lucatch from "../../assets/functions/catch";
 import { useNavigate } from "react-router-dom";
 import FileSaver from "file-saver";
+import { useTranslation } from "react-i18next";
 
 export default function Resources() {
     const navigate = useNavigate();
+    const { t } = useTranslation();
     const [rows, setRows] = useState([]);
     useEffect(() => {
         gets();
@@ -41,10 +43,10 @@ export default function Resources() {
                     <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400 sm:table-header-group hidden">
                         <tr>
                             <th scope="col" className="px-6 py-3 sm:table-cell hidden">
-                                <span className="mx-5 my-4">ID</span>
+                                <span className="mx-5 my-4">{t("id")}</span>
                             </th>
                             <th scope="col" className="px-1 sm:px-6 py-3">
-                                <span className="mx-5 my-4">Name</span>
+                                <span className="mx-5 my-4">{t("name")}</span>
                             </th>
                             <th scope="col"></th>
                             <th scope="col"></th>
@@ -62,14 +64,14 @@ export default function Resources() {
                                 <td className="px-1 sm:px-2 text-center sm:table-cell hidden">
                                     <a href={`http://192.168.100.9:2006/otil/v1/api/resource/file/${row.id}`} target="_blank" rel="noopener noreferrer">
                                         <button className="bg-indigo-300 hover:bg-indigo-400 text-gray-800 font-bold py-2 px-6 rounded inline-flex items-center my-2">
-                                            view
+                                            {t("view")}
                                         </button>
                                     </a>
                                 </td>
                                 <td className="px-1 sm:px-2 text-center">
                                     <div className="inline-block w-fit h-fit my-2" onClick={() => getResourceFile(row)}>
                                         <button className="bg-indigo-300 hover:bg-indigo-400 text-gray-800 font-bold py-2 px-6 rounded inline-flex items-center">
-                                            download
+                                            {t("download")}
                                         </button>
                                     </div>
                                 </td>
@@ -82,7 +84,7 @@ export default function Resources() {
             <div className="h-16 text-left">
                 <div className="inline-block w-fit h-fit my-3" onClick={() => navigate("/create-resource")}>
                     <button className="bg-indigo-300 hover:bg-indigo-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center">
-                        Create Resource
+                        {t("create resource")}
                     </button>
                 </div>
             </div>

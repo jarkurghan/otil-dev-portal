@@ -5,6 +5,7 @@ import LUCheck from "../../tools/LUCheck";
 import LUSwitch from "../../tools/LUSwitch/LUSwitch";
 import LUPopup from "../../tools/LUPopup/LUPopup";
 import lucatch from "../../assets/functions/catch";
+import { useTranslation } from "react-i18next";
 
 export default function UserPolicies() {
     const [progress, setProgress] = useState(false);
@@ -13,6 +14,8 @@ export default function UserPolicies() {
     const [actions, setActions] = useState([]);
     const [data, setData] = useState([]);
     const [select, setSelect] = useState(null);
+    const { t } = useTranslation();
+
     useEffect(() => {
         (async () => {
             await getActions();
@@ -84,10 +87,11 @@ export default function UserPolicies() {
                     <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                         <tr>
                             <th scope="col" className="px-11 py-3">
-                                Name
+                                {t("name")}
                             </th>
                             {actions.map((e) => (
                                 <th scope="col" className="px-6 py-3 text-center" key={e.id}>
+                                    {/* to-do: translation */}
                                     {e.action}
                                 </th>
                             ))}
@@ -114,7 +118,7 @@ export default function UserPolicies() {
                                         className="bg-rose-300 hover:bg-rose-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center my-2"
                                         style={{ visibility: "hidden" }}
                                     >
-                                        cancel
+                                        {t("cancel")}
                                     </button>
                                 </td>
                                 <td className="px-6 text-center">
@@ -123,14 +127,14 @@ export default function UserPolicies() {
                                         className="bg-indigo-300 hover:bg-indigo-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center my-2"
                                         style={{ display: row.id !== select ? "inherit" : "none" }}
                                     >
-                                        <div style={{ width: "60px" }}>change</div>
+                                        <div style={{ width: "60px" }}>{t("change")}</div>
                                     </button>
                                     <button
                                         onClick={(e) => setSelect(null)}
                                         className="bg-green-300 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center my-2"
                                         style={{ display: row.id === select ? "inherit" : "none" }}
                                     >
-                                        <div style={{ width: "60px" }}>done</div>
+                                        <div style={{ width: "60px" }}>{t("done")}</div>
                                     </button>
                                 </td>
                             </tr>
@@ -146,7 +150,7 @@ export default function UserPolicies() {
                                     className="bg-rose-300 hover:bg-rose-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center my-2"
                                     style={{ visibility: !isChange() ? "hidden" : "visible" }}
                                 >
-                                    cancel
+                                    {t("cancel")}
                                 </button>
                             </td>
                             <td className="px-6 text-center">
@@ -155,7 +159,7 @@ export default function UserPolicies() {
                                     className="bg-green-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center my-2"
                                     style={{ visibility: !isChange() ? "hidden" : "visible" }}
                                 >
-                                    <div style={{ width: "60px" }}>save</div>
+                                    <div style={{ width: "60px" }}>{t("save")}</div>
                                 </button>
                             </td>
                         </tr>

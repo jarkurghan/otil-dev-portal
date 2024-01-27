@@ -1,6 +1,8 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 
 export default function NewWord({ checkNewWord, disable }) {
+    const { t } = useTranslation();
     return (
         <div className="flex justify-center items-center h-28 mx-8">
             <div className="flex items-baseline">
@@ -18,7 +20,7 @@ export default function NewWord({ checkNewWord, disable }) {
                         checkNewWord(document.getElementById("new-word").value);
                     }}
                 >
-                    Submit
+                    {t("submit")}
                 </button>
             </div>
         </div>

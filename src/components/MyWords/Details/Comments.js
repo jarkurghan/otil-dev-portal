@@ -1,16 +1,18 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react-hooks/exhaustive-deps */
 import React from "react";
-import InputCommentary from "../../assets/inputs/commentary";
+import InputCommentary from "../../../assets/inputs/commentary";
 import axios from "axios";
 import { useState } from "react";
 import { useEffect } from "react";
-import lucatch from "../../assets/functions/catch";
-import WordCommentItem from "./WordCommentItem";
+import lucatch from "../../../assets/functions/catch";
+import WordCommentItem from "./CommentItem";
+import { useTranslation } from "react-i18next";
 
 export default function WordComments({ word }) {
     const [comments, setComments] = useState([]);
     const [replied, setReplied] = useState(null);
+    const { t } = useTranslation();
 
     const sendComment = () => {
         const textElement = document.getElementById("send-comment");
@@ -45,31 +47,27 @@ export default function WordComments({ word }) {
         getComments();
     }, []);
     return (
-        <div className="w-full flex justify-center my-5 px-2">
-            <div className="max-w-7xl w-full">
-                <h1 className="text-3xl text-slate-800 font-bold dark:text-white my-2">Comments</h1>
-                <div>
-                    {comments.map((comment, index) => (
-                        <WordCommentItem comments={comments} className="my-4" comment={comment} like={like} setReplied={setReplied} key={index} />
-                    ))}
-                    <div id="comment-container">
-                        <div style={{ visibility: replied ? "visible" : "hidden" }}>
-                            <div className="opacity-70 ml-12 pl-2 mr-4 pr-6 md:w-[685px] mt-8 h-[60px] border-l-4 border-indigo-900 bg-indigo-100 whitespace-nowrap overflow-hidden text-ellipsis relative">
-                                <div
-                                    className="text-xl absolute right-1 top-1 font-semibold text-indigo-950 select-none cursor-pointer"
-                                    onClick={() => {
-                                        setReplied(null);
-                                    }}
-                                >
-                                    &#10540;
-                                </div>
-                                {replied && (
-                                    <WordCommentItem comment={comments.find((e) => e?.id === replied)} like={like} setReplied={setReplied} className={"mt-1"} />
-                                )}
+        <div className="max-w-7xl my-5 px-2 mx-auto">
+            <h1 className="text-3xl text-slate-800 font-bold dark:text-white my-2">{t("comments")}</h1>
+            <div>
+                {comments.map((comment, index) => (
+                    <WordCommentItem comments={comments} className="my-4" comment={comment} like={like} setReplied={setReplied} key={index} />
+                ))}
+                <div id="comment-container">
+                    <div style={{ visibility: replied ? "visible" : "hidden" }}>
+                        <div className="opacity-70 ml-12 pl-2 mr-4 pr-6 md:w-[685px] mt-8 h-[60px] border-l-4 border-indigo-900 bg-indigo-100 whitespace-nowrap overflow-hidden text-ellipsis relative">
+                            <div
+                                className="text-xl absolute right-1 top-1 font-semibold text-indigo-950 select-none cursor-pointer"
+                                onClick={() => setReplied(null)}
+                            >
+                                &#10540;
                             </div>
+                            {replied && (
+                                <WordCommentItem comment={comments.find((e) => e?.id === replied)} like={like} setReplied={setReplied} className={"mt-1"} />
+                            )}
                         </div>
-                        <InputCommentary send={sendComment} />
                     </div>
+                    <InputCommentary send={sendComment} />
                 </div>
             </div>
         </div>

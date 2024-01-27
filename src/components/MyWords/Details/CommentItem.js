@@ -1,14 +1,14 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react-hooks/exhaustive-deps */
 import React from "react";
-import Avatar from "../../assets/Icons/Avatar";
-import stringToColor from "../../assets/functions/stringToColor";
+import Avatar from "../../../assets/Icons/Avatar";
+import stringToColor from "../../../assets/functions/stringToColor";
 import styles from "./style.module.css";
-import Like from "../../assets/Icons/like";
-import Dislike from "../../assets/Icons/dislike";
-import LikePlus from "../../assets/Icons/like-plus";
-import Reply from "../../assets/Icons/reply";
-import DislikePlus from "../../assets/Icons/dislike-plus";
+import Like from "../../../assets/Icons/like";
+import Dislike from "../../../assets/Icons/dislike";
+import LikePlus from "../../../assets/Icons/like-plus";
+import Reply from "../../../assets/Icons/reply";
+import DislikePlus from "../../../assets/Icons/dislike-plus";
 
 export default function WordCommentItem({ comment, comments, setReplied, like, className: clas }) {
     return (
@@ -22,7 +22,7 @@ export default function WordCommentItem({ comment, comments, setReplied, like, c
                     {comment.first_name} {comment.last_name}
                 </h1>
                 {comment.reply && comments?.find((e) => e?.id === comment.reply) && (
-                    <div className="opacity-70 pl-2 mr-4 pr-6 w-[max(200px, 200px)] h-[60px] border-l-4 border-indigo-900 bg-indigo-100 whitespace-nowrap overflow-hidden text-ellipsis relative">
+                    <div className="opacity-70 pl-2 mr-4 pr-6 w-[max(200px, 200px)] h-[60px] border-l-4 border-indigo-900 bg-indigo-100 whitespace-wrap overflow-hidden text-ellipsis relative">
                         <WordCommentItem comment={comments?.find((e) => e?.id === comment.reply)} like={like} setReplied={setReplied} className={"mt-1"} />
                     </div>
                 )}

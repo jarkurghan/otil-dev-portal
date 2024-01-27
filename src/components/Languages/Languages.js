@@ -5,6 +5,7 @@ import Item from "./ItemLanguages";
 import Types from "./ItemWordTypes";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { useTranslation } from "react-i18next";
 const addlangdef = { language: "", description: "" };
 const addtypedef = { type: "", description: "" };
 
@@ -15,6 +16,7 @@ export default function Example() {
     const [addlang, setAddLang] = useState(addlangdef);
     const [addType, setAddType] = useState(addtypedef);
     const [types, setTypes] = useState([]);
+    const { t } = useTranslation();
 
     useEffect(() => {
         gets();
@@ -130,8 +132,8 @@ export default function Example() {
 
                     {row && (
                         <div className="mt-8 mb-16">
-                            <h1 className="text-3xl font-semibold">So'z turkumlari</h1>
-                            {types.length === 0 && <div className="truncate text-lg font-medium text-indigo-600">So'z turkumi qo'shing</div>}
+                            <h1 className="text-3xl font-semibold">{t("part of speech")}</h1>
+                            {types.length === 0 && <div className="truncate text-lg font-medium text-indigo-600">{t("add part of speech")}</div>}
                             <div className="overflow-hidden bg-white shadow sm:rounded-lg">
                                 <ul className="divide-y divide-gray-200">
                                     {types.map((e) => (
@@ -142,27 +144,27 @@ export default function Example() {
                         </div>
                     )}
                     <div>
-                        <h1 className="text-3xl font-semibold">Qo'shish</h1>
+                        <h1 className="text-3xl font-semibold">{t("add")}</h1>
                         <div>
                             {row && (
                                 <button
                                     onClick={() => setAdd("type")}
                                     className="bg-indigo-300 hover:bg-indigo-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center my-2 mr-5"
                                 >
-                                    word type
+                                    {t("part of speech")}
                                 </button>
                             )}
                             <button
                                 onClick={() => setAdd("lang")}
                                 className="bg-indigo-300 hover:bg-indigo-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center my-2"
                             >
-                                language
+                                {t("language")}
                             </button>
                         </div>
                         {add === "lang" && (
                             <div>
                                 <div className="xl:mr-2 w-full max-w-[400px]">
-                                    <span className="py-2 font-semibold">language:</span>
+                                    <span className="py-2 font-semibold">{t("language")}:</span>
                                     <input
                                         defaultValue={addlang.language}
                                         onChange={(e) => setAddLang({ language: e.target.value, description: addlang.description })}
@@ -171,7 +173,7 @@ export default function Example() {
                                 </div>
 
                                 <div className="xl:mr-2 w-full max-w-[400px]">
-                                    <span className="py-2 font-semibold">description:</span>
+                                    <span className="py-2 font-semibold">{t("description")}:</span>
                                     <textarea
                                         rows="4"
                                         defaultValue={addlang.description}
@@ -183,20 +185,20 @@ export default function Example() {
                                     onClick={addLanguage}
                                     className="bg-indigo-300 hover:bg-indigo-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center my-2 mr-5"
                                 >
-                                    submit
+                                    {t("submit")}
                                 </button>
                                 <button
                                     onClick={clear}
                                     className="bg-indigo-300 hover:bg-indigo-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center my-2"
                                 >
-                                    clear
+                                    {t("clear")}
                                 </button>
                             </div>
                         )}
                         {add === "type" && (
                             <div>
                                 <div className="xl:mr-2 w-full max-w-[400px]">
-                                    <span className="py-2 font-semibold">language:</span>
+                                    <span className="py-2 font-semibold">{t("language")}:</span>
                                     <input
                                         disabled
                                         value={row.language}
@@ -205,7 +207,7 @@ export default function Example() {
                                 </div>
 
                                 <div className="xl:mr-2 w-full max-w-[400px]">
-                                    <span className="py-2 font-semibold">word type:</span>
+                                    <span className="py-2 font-semibold">{t("part of speech")}:</span>
                                     <input
                                         defaultValue={addType.type}
                                         onChange={(e) => setAddType({ type: e.target.value, description: addType.description })}
@@ -213,7 +215,7 @@ export default function Example() {
                                     />
                                 </div>
                                 <div className="xl:mr-2 w-full max-w-[400px]">
-                                    <span className="py-2 font-semibold">description:</span>
+                                    <span className="py-2 font-semibold">{t("description")}:</span>
                                     <textarea
                                         rows="4"
                                         defaultValue={addType.description}
@@ -225,13 +227,13 @@ export default function Example() {
                                     onClick={addWordType}
                                     className="bg-indigo-300 hover:bg-indigo-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center my-2 mr-5"
                                 >
-                                    submit
+                                    {t("submit")}
                                 </button>
                                 <button
                                     onClick={clear}
                                     className="bg-indigo-300 hover:bg-indigo-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center my-2"
                                 >
-                                    clear
+                                    {t("clear")}
                                 </button>
                             </div>
                         )}

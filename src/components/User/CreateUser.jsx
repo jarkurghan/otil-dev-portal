@@ -4,9 +4,11 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { Formik, Field, Form } from "formik";
 import lucatch from "../../assets/functions/catch";
+import { useTranslation } from "react-i18next";
 
 const CreateUser = () => {
     const navigate = useNavigate();
+    const { t } = useTranslation();
 
     const submit = async (data, setSubmitting) => {
         await axios
@@ -22,19 +24,19 @@ const CreateUser = () => {
             <Formik initialValues={{ first_name: "", last_name: "", email: "", phone: "" }} onSubmit={submit}>
                 <Form className="grid sm:grid-cols-2 sm:gap-6 grid-cols-1 gap-3">
                     <div>
-                        <label htmlFor="first_name">First Name</label>
+                        <label htmlFor="first_name">{t("first name")}</label>
                         <Field id="first_name" name="first_name" placeholder="Najmiddin" className="w-full py-1 px-2 my-1" />
                     </div>
                     <div>
-                        <label htmlFor="last_name">Last Name</label>
+                        <label htmlFor="last_name">{t("last name")}</label>
                         <Field id="last_name" name="last_name" placeholder="Nazirov" className="w-full py-1 px-2 my-1" />
                     </div>
                     <div>
-                        <label htmlFor="email">Email</label>
+                        <label htmlFor="email">{t("email")}</label>
                         <Field id="email" name="email" placeholder="jarkurghan@gmail.com" type="email" className="w-full py-1 px-2 my-1" />
                     </div>
                     <div>
-                        <label htmlFor="phone">Phone</label>
+                        <label htmlFor="phone">{t("phone")}</label>
                         <Field id="phone" name="phone" placeholder="+998772590100" type="phone" className="w-full py-1 px-2 my-1" />
                     </div>
                     <div></div>
@@ -43,7 +45,7 @@ const CreateUser = () => {
                             type="submit"
                             className="float-right bg-transparent enabled:hover:bg-blue-500 text-blue-700 font-semibold enabled:hover:text-white border border-blue-500 enabled:hover:border-transparent text-sm px-4 py-2 rounded shadow outline-none focus:outline-none ease-linear transition-all duration-150"
                         >
-                            Submit
+                            {t("submit")}
                         </button>
                     </div>
                 </Form>

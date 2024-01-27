@@ -1,10 +1,13 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 
 export default function InputOtherForms2({ word, setWord }) {
+    const { t } = useTranslation();
+
     return (
         <div className="sm:grid sm:grid-cols-3 sm:gap-2 lg:inline-block lg:mt-4 lg:mr-8 lg:w-[clamp(calc(850px/3-2rem),calc(33.3333%-2rem),600px)]">
             <div className="sm:col-span-1">
-                <span className="p-2 mr-2 font-semibold sm:float-right lg:float-left">other forms 2:</span>
+                <span className="p-2 mr-2 font-semibold sm:float-right lg:float-left">{t("other forms 2")}:</span>
             </div>
             <div className="sm:col-span-2">
                 <div className="mb-6">
@@ -13,9 +16,7 @@ export default function InputOtherForms2({ word, setWord }) {
                             type="text"
                             id="other_forms_2"
                             defaultValue={word.other_forms_2_text}
-                            onChange={(e) => {
-                                setWord({ ...word, other_forms_2_text: e.target.value });
-                            }}
+                            onChange={(e) => setWord({ ...word, other_forms_2_text: e.target.value })}
                             className="block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         />
                         <button
@@ -29,7 +30,7 @@ export default function InputOtherForms2({ word, setWord }) {
                                 setWord({ ...word });
                             }}
                         >
-                            Add
+                            {t("add")}
                         </button>
                     </div>
 
