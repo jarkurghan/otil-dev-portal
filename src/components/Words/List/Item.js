@@ -22,7 +22,7 @@ export default function Item({ data }) {
                 </button>
             </div>
             <div className="h-6 px-2 text-[13.4px] text-[#888] font-semibold uppercase">
-                <div className={`w-[10px] h-[10px] inline-block rounded-full bg-[${statusToColor(data.status)}]`}></div>
+                <div className={`w-[10px] h-[10px] inline-block rounded-full`} style={{ backgroundColor: statusToColor(data.status) }}></div>
                 <div className="sm:inline-block hidden">
                     &nbsp; {data.first_name}&nbsp;{data.last_name}
                 </div>
@@ -36,17 +36,17 @@ export default function Item({ data }) {
 const statusToColor = (status) => {
     switch (status) {
         case "new":
-            return "#50d71e";
+            return "#FFA500";
         case "consideration":
-            return "#50d71e";
+            return "#FF1493";
         case "unsatisfied":
-            return "#50d71e";
+            return "#00BFFF";
         case "active":
-            return "#50d71e";
+            return "#00FF00";
         case "remove":
-            return "#50d71e";
+            return "#2F4F4F";
 
         default:
-            return "#50d71e";
+            return "#FF0000";
     }
 };

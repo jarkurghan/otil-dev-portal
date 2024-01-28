@@ -33,13 +33,7 @@ const WordDetailsPage = () => {
     const getWordInfo = async () => {
         await axios
             .get(`${process.env.REACT_APP_URL}/otil/v1/api/word/${id}/info`, { headers: { Authorization: localStorage.getItem("token") } })
-            .then((res) => {
-                if (!res.data.definition) res.data.definition = {};
-                if (!res.data.history) res.data.history = {};
-                if (!res.data.example) res.data.example = {};
-                if (!res.data.synonyms) res.data.synonyms = [];
-                setCurrentWord(res.data);
-            })
+            .then((res) => setCurrentWord(res.data))
             .catch(lucatch);
     };
 
