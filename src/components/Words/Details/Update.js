@@ -72,7 +72,7 @@ export default function UpdateWord({ word, setWord }) {
                 <InputDefinition word={word} setWord={setWord} resources={resources} />
                 <InputHistory word={word} setWord={setWord} resources={resources} />
                 <InputSource word={word} setWord={setWord} resources={resources} />
-                <InputOtherForms word={word} setWord={setWord} />
+                {/* <InputOtherForms word={word} setWord={setWord} /> */}
                 <ButtonSubmit submit={submit} />
             </div>
         </div>
