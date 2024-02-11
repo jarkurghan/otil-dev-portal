@@ -15,8 +15,11 @@ import lucatch from "../../assets/functions/catch";
 import createWord from "./validation";
 import { toast } from "react-toastify";
 import convert from "./convert";
+import { useTranslation } from "react-i18next";
+import ButtonCancel from "../../assets/inputs/cancel";
 
 export default function CreatedWord({ word, setWord, setPageStatus }) {
+    const { t } = useTranslation();
     const [resources, setResources] = useState([]);
     const [languages, setLanguages] = useState([]);
     const [wordTypes, setWordTypes] = useState([]);
@@ -43,10 +46,22 @@ export default function CreatedWord({ word, setWord, setPageStatus }) {
                 .catch(lucatch);
     };
 
+    const cancel = () => {
+        setCookie("word", "", 0);
+        setPageStatus("new");
+        setWord({});
+    };
+
     const submit = async () => {
         const value = createWord.validate(convert(word));
         if (value.error) {
-            toast.error(value.error.message);
+            if (value.error.details[0].context.details && value.error.details[0].context.details[0])
+                for (let i = 0; i < value.error.details[0].context.details.length; i++) {
+                    if (value.error.details[0].context.details[i].message !== "definition is required" || value.error._original.synonyms.length === 0)
+                        if (i === 0 || value.error.details[0].context.details[i].message !== value.error.details[0].context.details[0].message)
+                            toast.warning(t(value.error.details[0].context.details[i].message));
+                }
+            else toast.warning(t("Something went wrong"));
             return 0;
         }
 
@@ -85,6 +100,7 @@ export default function CreatedWord({ word, setWord, setPageStatus }) {
                 <InputSource word={word} setWord={setWord} resources={resources} />
                 <InputOtherForms word={word} setWord={setWord} />
                 <ButtonSubmit submit={submit} />
+                <ButtonCancel cancel={cancel} />
             </div>
         </div>
     );

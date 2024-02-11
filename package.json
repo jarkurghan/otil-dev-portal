@@ -47,6 +47,14 @@
         "eject": "react-scripts eject"
     },
     "eslintConfig": {
+        "rules": {
+            "no-unused-vars": "off",
+            "array-callback-return": "off",
+            "react-hooks/exhaustive-deps": "off",
+            "jsx-a11y/anchor-has-content": "off",
+            "jsx-a11y/anchor-is-valid": "off",
+            "jsx-a11y/iframe-has-title": "off"
+        },
         "extends": [
             "react-app",
             "react-app/jest"

@@ -29,6 +29,17 @@
     "other forms": "other forms",
     "other forms 2": "other forms 2",
 
+    "invalid word": "invalid word",
+    "select language": "select language",
+    "select part of speech": "select part of speech",
+    "definition is required": "enter definition or synonym",
+    "definition is incomplete. fill or remove": "definition is incomplete. fill or remove",
+    "example is incomplete. fill or remove": "example is incomplete. fill or remove",
+    "history of origin is incomplete. fill or remove": "history of origin is incomplete. fill or remove",
+    "invalid word in synonyms": "invalid word in synonyms",
+    "synonym is required": "enter definition or synonym",
+    "Something went wrong": "Something went wrong",
+
     "details": "details",
 
     "back": "back",

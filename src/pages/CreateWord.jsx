@@ -32,14 +32,12 @@ const CreateWord = () => {
     }, []);
 
     useEffect(() => {
-        if (pageStatus === "new") {
-            setDisableNewWord(false);
-        }
+        if (pageStatus === "new") setDisableNewWord(false);
     }, [pageStatus]);
 
     const checkNewWord = (word) => {
         if (!word) return toast.warning("enter the word");
-        if (!/[a-z]+/.test(word)) return toast.warning("invalid word");
+        if (!/^[a-z'ʻʼ‘’ ]+$/i.test(word)) return toast.warning("invalid word");
         setWordObj({ word });
         axios
             .post(`${process.env.REACT_APP_URL}/otil/v1/api/word/check`, { word }, { headers: { Authorization: localStorage.getItem("token") } })

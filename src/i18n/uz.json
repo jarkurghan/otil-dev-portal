@@ -29,6 +29,17 @@
     "other forms": "maʻnodoshlari",
     "other forms 2": "tuslangan shakllari",
 
+    "invalid word": "soʻz yaroqsiz",
+    "select language": "tilni tanlang",
+    "select part of speech": "soʻz turkumini tanlang",
+    "definition is required": "taʻrif yoki sinonim kiriting",
+    "definition is incomplete. fill or remove": "taʻrif toʻliq emas. toʻldiring yoki boʻshating",
+    "example is incomplete. fill or remove": "koʻchirma toʻliq emas. toʻldiring yoki boʻshating",
+    "history of origin is incomplete. fill or remove": "kelib chiqish tarixi toʻliq emas. toʻldiring yoki boʻshating",
+    "invalid word in synonyms": "sinonim soʻz yaroqsiz",
+    "synonym is required": "taʻrif yoki sinonim kiriting",
+    "Something went wrong": "Nimadir notoʻgʻri bajarildi",
+
     "details": "batafsil",
 
     "back": "ortga",
