@@ -11,6 +11,7 @@ import CreatedWord from "../components/CreateWord/CreateWord";
 import "../components/CreateWord/style.css";
 import setCookie from "../cookie/setCookie";
 import getCookie from "../cookie/getCookie";
+import AlreadyExists from "../components/CreateWord/AlreadyExists";
 
 const CreateWord = () => {
     const [pageStatus, setPageStatus] = useState("new");
@@ -31,14 +32,12 @@ const CreateWord = () => {
     }, []);
 
     useEffect(() => {
-        if (pageStatus === "new") {
-            setDisableNewWord(false);
-        }
+        if (pageStatus === "new") setDisableNewWord(false);
     }, [pageStatus]);
 
     const checkNewWord = (word) => {
         if (!word) return toast.warning("enter the word");
-        if (!/[a-z]+/.test(word)) return toast.warning("invalid word");
+        if (!/^[a-z'ʻʼ‘’ ]+$/i.test(word)) return toast.warning("invalid word");
         setWordObj({ word });
         axios
             .post(`${process.env.REACT_APP_URL}/otil/v1/api/word/check`, { word }, { headers: { Authorization: localStorage.getItem("token") } })
@@ -67,10 +66,8 @@ const CreateWord = () => {
             newword.definition = {};
             newword.history = {};
             newword.example = {};
-            newword.other_forms = [];
-            newword.other_forms_2 = [];
-            newword.other_forms_text = "";
-            newword.other_forms_2_text = "";
+            newword.synonyms = [];
+            newword.synonyms_text = "";
             newword.language = "";
             newword.word_group = "";
             setWordObj(newword);
@@ -93,7 +90,7 @@ const CreateWord = () => {
                     ) : pageStatus === "exists" ? (
                         <>
                             <NewWord checkNewWord={checkNewWord} disable={disableNewWord} />
-                            Exists
+                            <AlreadyExists setStatus={setCreateStatus} word={wordObj} />
                         </>
                     ) : pageStatus === "not found" ? (
                         <>

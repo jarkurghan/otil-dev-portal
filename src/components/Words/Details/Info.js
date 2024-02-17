@@ -52,6 +52,35 @@ export default function WordInfo({ word }) {
                         </div>
                     </div>
                 )}
+
+                {word.synonyms?.length > 0 && (
+                    <div className="font-bold">
+                        <span className="sm:float-right">{t("synonyms")}</span>
+                    </div>
+                )}
+                {word.synonyms?.length > 0 && (
+                    <div className="mb-2 sm:mb-0">
+                        {word.synonyms.map((e, i) => (
+                            <span>
+                                {e.word}
+                                {i !== word.synonyms.length - 1 && ", "}
+                            </span>
+                        ))}
+                    </div>
+                )}
+
+                <div className="font-bold">
+                    <span className="sm:float-right">{t("part of speech")}</span>
+                </div>
+                <div className="mb-2 sm:mb-0">
+                    <span>{word.word_type}</span>
+                </div>
+                <div className="font-bold">
+                    <span className="sm:float-right">{t("language")}</span>
+                </div>
+                <div className="mb-2 sm:mb-0">
+                    <span>{word.language}</span>
+                </div>
             </div>
             <h1 className="text-3xl text-slate-800 font-bold dark:text-white my-2">{t("reactions")}</h1>
 
@@ -60,26 +89,28 @@ export default function WordInfo({ word }) {
                     <span className="sm:float-right">{t("view")}</span>
                 </div>
                 <div className="mb-2 sm:mb-0">
-                    <span>232</span>
+                    <span>{+word.view?.count}</span>
                 </div>
                 <div className="font-bold mr-2">
                     <span className="sm:float-right">{t("comments")}</span>
                 </div>
                 <div className="mb-2 sm:mb-0">
-                    <span>10</span>
+                    <span>{+word.comment?.count}</span>
                 </div>
                 <div className="font-bold mr-2">
                     <span className="sm:float-right">{t("status")}</span>
                 </div>
                 <div className="mb-2 sm:mb-0">
                     {/* to-do: translation */}
-                    <span>Yangi</span>
+                    <span>{t(word.status)}</span>
                 </div>
                 <div className="font-bold mr-2">
                     <span className="sm:float-right">{t("author")}</span>
                 </div>
                 <div className="mb-2 sm:mb-0">
-                    <span>Najmiddin Nazirov</span>
+                    <span>
+                        {word.first_name} {word.last_name}
+                    </span>
                 </div>
             </div>
         </div>

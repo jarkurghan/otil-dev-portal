@@ -9,7 +9,7 @@ import Users from "./pages/Users";
 import CreateWord from "./pages/CreateWord";
 import SignIn from "./pages/Login";
 import LanguagesPage from "./pages/Languages";
-import MyWordsPage from "./pages/MyWords";
+import WordsPage from "./pages/Words";
 import ResourcesPage from "./pages/Resources";
 import CreateResource from "./pages/CreateResource";
 import WordDetailsPage from "./pages/WordDetails";
@@ -30,7 +30,7 @@ function App() {
                     <Routes>
                         <Route path="/" element={<Navigate to="/users" />} />
                         <Route path="/new-word" element={<CreateWord />} />
-                        <Route path="/words" element={<MyWordsPage />} />
+                        <Route path="/words" element={<WordsPage />} />
                         <Route path="/words/:id/:page" element={<WordDetailsPage />} />
                         <Route path="/languages" element={<LanguagesPage />} />
                         <Route path="/resources" element={<ResourcesPage />} />

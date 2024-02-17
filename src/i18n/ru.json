@@ -8,8 +8,9 @@
 
     "submit": "Отправка",
 
-    "are you sure you want to create the word (1)": "Вы уверены, что хотите создать слово",
+    "are you sure you want to create the word (1)": "Вы уверены, что хотите создать слово ",
     "are you sure you want to create the word (2)": "?",
+    "this word already exists": "это слово уже существует",
     "yes": "Да",
     "no": "Нет",
 
@@ -27,6 +28,17 @@
     "add": "Добавить",
     "other forms": "синонимы",
     "other forms 2": "затененные формы",
+
+    "invalid word": "недопустимое слово",
+    "select language": "выбрать язык",
+    "select part of speech": "выбрать часть речи",
+    "definition is required": "введите определение или синоним",
+    "definition is incomplete. fill or remove": "определение неполное. заполните или удалите",
+    "example is incomplete. fill or remove": "пример неполный. заполните или удалите",
+    "history of origin is incomplete. fill or remove": "история происхождения неполная. заполните или удалите",
+    "invalid word in synonyms": "недопустимое слово в синонимах",
+    "synonym is required": "введите определение или синоним",
+    "Something went wrong": "Что-то пошло не так",
 
     "details": "подробности",
 

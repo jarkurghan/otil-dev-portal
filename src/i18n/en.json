@@ -8,8 +8,9 @@
 
     "submit": "Submit",
 
-    "are you sure you want to create the word (1)": "Are you sure you want to create the word",
+    "are you sure you want to create the word (1)": "Are you sure you want to create the word ",
     "are you sure you want to create the word (2)": "?",
+    "this word already exists": "this word already exists",
     "yes": "Yes",
     "no": "No",
 
@@ -27,6 +28,17 @@
     "add": "Add",
     "other forms": "other forms",
     "other forms 2": "other forms 2",
+
+    "invalid word": "invalid word",
+    "select language": "select language",
+    "select part of speech": "select part of speech",
+    "definition is required": "enter definition or synonym",
+    "definition is incomplete. fill or remove": "definition is incomplete. fill or remove",
+    "example is incomplete. fill or remove": "example is incomplete. fill or remove",
+    "history of origin is incomplete. fill or remove": "history of origin is incomplete. fill or remove",
+    "invalid word in synonyms": "invalid word in synonyms",
+    "synonym is required": "enter definition or synonym",
+    "Something went wrong": "Something went wrong",
 
     "details": "details",
 

@@ -1,13 +1,13 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react";
-import WordDetailsMenu from "../components/MyWords/Details/Navbar-Menu";
-import CurrentWord from "../components/MyWords/Details/CurrentWord";
-import WordSettings from "../components/MyWords/Details/Settings";
+import WordDetailsMenu from "../components/Words/Details/Navbar-Menu";
+import CurrentWord from "../components/Words/Details/CurrentWord";
+import WordSettings from "../components/Words/Details/Settings";
 import axios from "axios";
 import lucatch from "../assets/functions/catch";
-import WordComments from "../components/MyWords/Details/Comments";
-import WordInfo from "../components/MyWords/Details/Info";
+import WordComments from "../components/Words/Details/Comments";
+import WordInfo from "../components/Words/Details/Info";
 
 const WordDetailsPage = () => {
     const page = "words";
@@ -33,14 +33,7 @@ const WordDetailsPage = () => {
     const getWordInfo = async () => {
         await axios
             .get(`${process.env.REACT_APP_URL}/otil/v1/api/word/${id}/info`, { headers: { Authorization: localStorage.getItem("token") } })
-            .then((res) => {
-                if (!res.data.definition) res.data.definition = {};
-                if (!res.data.history) res.data.history = {};
-                if (!res.data.example) res.data.example = {};
-                if (!res.data.other_forms) res.data.other_forms = [];
-                if (!res.data.other_forms_2) res.data.other_forms_2 = [];
-                setCurrentWord(res.data);
-            })
+            .then((res) => setCurrentWord(res.data))
             .catch(lucatch);
     };
 
