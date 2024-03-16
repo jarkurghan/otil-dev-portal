@@ -1,5 +1,3 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable react-hooks/exhaustive-deps */
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
@@ -13,7 +11,8 @@ export default function Item({ data }) {
         <div key={data.id} className="grid grid-cols-[1fr_auto] grid-rows-[1fr_24px] min-h-[50px] max-h-[200px] m-2 bg-slate-50/80">
             <div className="pt-1 px-2">
                 <div className="inline-block text-md max-h-[100px] text-ellipsis overflow-hidden whitespace-wrap break-word text-justify">
-                    <span className="text-lg font-medium text-indigo-600 capitalize">{data.word}</span> - {data.definition}
+                    <span className="text-lg font-medium text-indigo-600 capitalize">{data.word}</span> -{" "}
+                    {data.definition ? data.definition : data.synonyms?.map((e, i) => `${e.word}${data.synonyms.length !== i + 1 ? ", " : ""}`)}
                 </div>
             </div>
             <div className="row-span-2 flex justify-center items-center mx-2">

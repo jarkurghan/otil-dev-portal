@@ -12,11 +12,11 @@ const convert = (word) => {
     if (!word.history.page) delete word.history.page;
     delete word.synonyms_text;
 
-    if (typeof word.word === "string") convertTB(word.word);
-    if (typeof word.definition.definition === "string") convertTB(word.definition.definition);
-    if (typeof word.example.example === "string") convertTB(word.example.example);
-    if (typeof word.history.history === "string") convertTB(word.history.history);
-    for (let i = 0; i < word.synonyms.length; i++) convertTB(word.synonyms[i]);
+    if (typeof word.word === "string") word.word = convertTB(word.word);
+    if (typeof word.definition.definition === "string") word.definition.definition = convertTB(word.definition.definition);
+    if (typeof word.example.example === "string") word.example.example = convertTB(word.example.example);
+    if (typeof word.history.history === "string") word.history.history = convertTB(word.history.history);
+    for (let i = 0; i < word.synonyms.length; i++) word.synonyms[i] = convertTB(word.synonyms[i]);
 
     return word;
 };

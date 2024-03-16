@@ -48,7 +48,8 @@ export default function InputOtherForms({ word, setWord }) {
                             {word.synonyms.map((e, i) => (
                                 <span key={e.id}>
                                     <span className="group hover:bg-slate-200 p-1">
-                                        {e}
+                                        {typeof e === "string" && e}
+                                        {typeof e.word === "string" && e.word}
                                         <span className="hidden group-hover:inline">
                                             <img src={del} alt="del" width={20} className="inline cursor-pointer ml-1" onClick={() => removeSynonym(i)} />
                                         </span>
