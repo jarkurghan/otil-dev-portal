@@ -33,7 +33,8 @@ export default function WordDetailsMenu({ id, page, setPage }) {
                                     { "bg-lime-950/10": page !== "details" },
                                     { "rounded-br-xl": page === "comments" }
                                 )}
-                            >{t("info")}
+                            >
+                                {t("info")}
                             </span>
                         </li>
                         <li className={cn("text-gray-900 dark:text-white bg-slate-100 cursor-pointer", { "rounded-t-lg": page === "comments" })}>
