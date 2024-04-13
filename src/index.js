@@ -10,7 +10,7 @@ import i18n from "./i18n";
 axios.interceptors.response.use(
     (response) => response,
     (error) => {
-        if (error.response.status === 499) {
+        if (error.response?.status === 499) {
             localStorage.clear();
             window.location.replace("/");
         }

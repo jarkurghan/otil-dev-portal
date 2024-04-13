@@ -1,5 +1,3 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable react-hooks/exhaustive-deps */
 import React from "react";
 import { useTranslation } from "react-i18next";
 
@@ -17,14 +15,17 @@ export default function WordInfo({ word }) {
                     <span>{word.word}</span>
                 </div>
 
-                <div className="font-bold">
-                    <span className="sm:float-right">{t("definition")}</span>
-                </div>
-                <div className="mb-2 sm:mb-0">
-                    <span>{word.definition?.definition}</span>
-                    <div>{`📚 ${word.definition?.resource_name} (${t("page number (1)")}${word.definition?.page}${t("page number (2)")})`}</div>
-                </div>
-
+                {word.definition?.definition && (
+                    <div className="font-bold">
+                        <span className="sm:float-right">{t("definition")}</span>
+                    </div>
+                )}
+                {word.definition?.definition && (
+                    <div className="mb-2 sm:mb-0">
+                        <span>{word.definition?.definition}</span>
+                        <div>{`📚 ${word.definition?.resource_name} (${t("page number (1)")}${word.definition?.page}${t("page number (2)")})`}</div>
+                    </div>
+                )}
                 {word.history?.history && (
                     <div className="font-bold">
                         <span className="sm:float-right">{t("history of origin")}</span>

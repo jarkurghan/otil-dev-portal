@@ -12,8 +12,10 @@ import ButtonSubmit from "../../../assets/inputs/submit";
 import InputOtherForms from "../../../assets/inputs/other-forms";
 import InputSource from "../../../assets/inputs/source";
 import axios from "axios";
+import ButtonCancel from "../../../assets/inputs/cancel";
+import { toast } from "react-toastify";
 
-export default function UpdateWord({ word, setWord }) {
+export default function UpdateWord({ word, setWord, setOpening }) {
     const [resources, setResources] = useState([]);
     const [languages, setLanguages] = useState([]);
     const [wordTypes, setWordTypes] = useState([]);
@@ -35,19 +37,23 @@ export default function UpdateWord({ word, setWord }) {
     const getWordTypes = async () => {
         if (word.language)
             await axios
-                .get(`${process.env.REACT_APP_URL}/otil/v1/api/language/${word.language_id}/type`, { headers: { Authorization: localStorage.getItem("token") } })
+                .get(`${process.env.REACT_APP_URL}/otil/v1/api/language/${word.language_id}/type`, {
+                    headers: { Authorization: localStorage.getItem("token") },
+                })
                 .then((res) => setWordTypes(res.data))
                 .catch(lucatch);
     };
 
     const submit = async () => {
-        // setCookie("word", "", 0);
-        // setPageStatus("new");
+        // to-do: validation
+        await axios
+            .put(`${process.env.REACT_APP_URL}/otil/v1/api/word`, word, { headers: { Authorization: localStorage.getItem("token") } })
+            .then(() => toast.success("Success!"))
+            .catch(lucatch);
+    };
 
-        setWord({ definition: {}, history: {}, example: {}, synonyms: [] });
-
-        // validation
-        // submit
+    const cancel = () => {
+        setOpening(null);
     };
 
     useEffect(() => {
@@ -59,22 +65,17 @@ export default function UpdateWord({ word, setWord }) {
         getWordTypes();
     }, [word.language]);
 
-    // useEffect(() => {
-    //     setCookie("word", JSON.stringify(word), 1);
-    // }, [word]);
-
     return (
-        <div className="inline-block w-[calc(100%-3rem)] mx-6 my-4">
-            <div className="lg:w-[calc(100%-4rem)] lg:mx-auto">
-                <InputWord word={word} />
-                <InputLanguage word={word} setWord={setWord} languages={languages} />
-                <InputWordGroup word={word} setWord={setWord} wordTypes={wordTypes} />
-                <InputDefinition word={word} setWord={setWord} resources={resources} />
-                <InputHistory word={word} setWord={setWord} resources={resources} />
-                <InputSource word={word} setWord={setWord} resources={resources} />
-                {/* <InputOtherForms word={word} setWord={setWord} /> */}
-                <ButtonSubmit submit={submit} />
-            </div>
+        <div className="inline-block w-full p-2">
+            <InputWord word={word} />
+            <InputLanguage word={word} setWord={setWord} languages={languages} />
+            <InputWordGroup word={word} setWord={setWord} wordTypes={wordTypes} />
+            <InputDefinition word={word} setWord={setWord} resources={resources} />
+            <InputHistory word={word} setWord={setWord} resources={resources} />
+            <InputSource word={word} setWord={setWord} resources={resources} />
+            <InputOtherForms word={word} setWord={setWord} />
+            <ButtonSubmit submit={submit} />
+            <ButtonCancel cancel={cancel} />
         </div>
     );
 }
