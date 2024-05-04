@@ -56,12 +56,16 @@ export default function WordSettings({ word, setWord }) {
                     </div>
                 </div>
                 <div className="text-right p-2 flex justify-end">
-                    <button
-                        onClick={() => setOpening("start")}
-                        className="self-end bg-transparent enabled:hover:bg-blue-500 text-blue-700 font-semibold enabled:hover:text-white border border-blue-500 enabled:hover:border-transparent text-md px-6 py-1 rounded shadow outline-none focus:outline-none ease-linear transition-all duration-150 float-right"
-                    >
-                        foydalanishga chiqarish
-                    </button>
+                    {word.status === "active" ? (
+                        "foydalanishga chiqarilgan"
+                    ) : (
+                        <button
+                            onClick={() => setOpening("start")}
+                            className="self-end bg-transparent enabled:hover:bg-blue-500 text-blue-700 font-semibold enabled:hover:text-white border border-blue-500 enabled:hover:border-transparent text-md px-6 py-1 rounded shadow outline-none focus:outline-none ease-linear transition-all duration-150 float-right"
+                        >
+                            {"foydalanishga chiqarirish"}
+                        </button>
+                    )}
                 </div>
                 <motion.div
                     animate={{ opacity: opening !== "start" ? 0 : 1 }}

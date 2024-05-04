@@ -19,6 +19,9 @@ import axios from "axios";
 import LoadingButton from "@mui/lab/LoadingButton";
 import SaveIcon from "@mui/icons-material/Save";
 import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { getRoles } from "@testing-library/react";
+import { setRole } from "../../store/roles";
 
 const theme = createTheme();
 
@@ -33,6 +36,8 @@ export default function Login() {
 
     const [visibleIcon, setVisibleIcon] = React.useState(true);
     const navigate = useNavigate();
+    const dispatch = useDispatch();
+
     const handleSubmit = (event) => {
         setLoading(true);
         axios
@@ -41,10 +46,8 @@ export default function Login() {
                 password: event.password,
             })
             .then((res) => {
-                for (let i = 0; i < res.data.actions.length; i++) {
-                    const element = res.data.actions[i];
-                    localStorage.setItem(`${element}`, element);
-                }
+                dispatch(setRole(res.data.actions));
+                localStorage.setItem("roles", res.data?.actions);
                 localStorage.setItem("token", res.data?.token);
                 localStorage.setItem("user_id", event.user_id);
                 setLoading(false);

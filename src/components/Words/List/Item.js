@@ -26,7 +26,8 @@ export default function Item({ data }) {
                     &nbsp; {data.first_name}&nbsp;{data.last_name}
                 </div>
                 <span>&nbsp; &#9997;{+data.comments}</span>
-                <span>&nbsp; &#128065;{+data.views}</span>
+                {/* hozircha tayyor bo'lmagani uchun commentda */}
+                {/* <span>&nbsp; &#128065;{+data.views}</span> */}
             </div>
         </div>
     );

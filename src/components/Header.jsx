@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import { Fragment, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { NavLink, useNavigate } from "react-router-dom";
@@ -12,10 +12,14 @@ import uz from "../assets/Icons/uz.png";
 import ru from "../assets/Icons/ru.png";
 import Cookies from "js-cookie";
 import { useTranslation } from "react-i18next";
+import { useSelector } from "react-redux";
+import { getRole } from "../store/roles";
 
 export default function Example() {
     const { t, i18n } = useTranslation();
     const navigate = useNavigate();
+    const roles = useSelector(getRole);
+
     // const [lang, setlang] = useState("uz");
     const [lang, setlang] = useState(Cookies.get("i18next"));
     const logout = () => {
@@ -29,24 +33,16 @@ export default function Example() {
         setlang(lng);
     };
 
-    const navigation = [
-        { name: t("Create word"), to: "/new-word", current: true },
-        { name: t("Words"), to: "/words", current: false },
-        { name: t("Languages"), to: "/languages", current: false },
-        { name: t("Resources"), to: "/resources", current: false },
-        { name: t("Users"), to: "/users", current: false },
-    ];
-    // if (localStorage.getItem("secret_key")) {
-    //   navigation.push(
-    //     { name: "Secret keys", to: "/secret-keys", current: false },
-    //     { name: "Databases", to: "/databases", current: false }
-    //   );
-    // }
-
-    const navigation2 = [
-        { name: t("Secret keys"), to: "/secret-keys", current: false },
-        { name: t("Databases"), to: "/databases", current: false },
-    ];
+    const [navigation, setNavigation] = useState([]);
+    useEffect(() => {
+        const x = [];
+        if (roles.includes("Create word")) x.push({ name: t("Create word"), to: "/new-word", current: true });
+        x.push({ name: t("Words"), to: "/words", current: false });
+        x.push({ name: t("Languages"), to: "/languages", current: false });
+        x.push({ name: t("Resources"), to: "/resources", current: false });
+        if (roles.includes("View users")) x.push({ name: t("Users"), to: "/users", current: false });
+        setNavigation(x);
+    }, [roles]);
 
     return (
         <>
@@ -71,18 +67,6 @@ export default function Example() {
                                                         {item.name}
                                                     </NavLink>
                                                 ))}
-                                                {localStorage.getItem("secret_key") &&
-                                                    navigation2.map((item) => {
-                                                        return (
-                                                            <NavLink
-                                                                key={item.name}
-                                                                to={item.to}
-                                                                className="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium"
-                                                            >
-                                                                {item.name}
-                                                            </NavLink>
-                                                        );
-                                                    })}
                                             </div>
                                         </div>
                                     </div>
@@ -170,18 +154,6 @@ export default function Example() {
                                             {item.name}
                                         </NavLink>
                                     ))}
-                                    {localStorage.getItem("secret_key") &&
-                                        navigation2.map((item) => {
-                                            return (
-                                                <NavLink
-                                                    key={item.name}
-                                                    to={item.to}
-                                                    className="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium"
-                                                >
-                                                    {item.name}
-                                                </NavLink>
-                                            );
-                                        })}
                                 </div>
                                 <div className="border-t border-gray-700 pb-3 pt-4">
                                     <div className="flex items-center px-5">

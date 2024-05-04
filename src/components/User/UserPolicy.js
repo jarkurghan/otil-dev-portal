@@ -6,6 +6,8 @@ import LUSwitch from "../../tools/LUSwitch/LUSwitch";
 import LUPopup from "../../tools/LUPopup/LUPopup";
 import lucatch from "../../assets/functions/catch";
 import { useTranslation } from "react-i18next";
+import { useSelector } from "react-redux";
+import { getRole } from "../../store/roles";
 
 export default function UserPolicies() {
     const [progress, setProgress] = useState(false);
@@ -15,6 +17,11 @@ export default function UserPolicies() {
     const [data, setData] = useState([]);
     const [select, setSelect] = useState(null);
     const { t } = useTranslation();
+    const roles = useSelector(getRole);
+
+    useEffect(() => {
+        if (select && !roles.includes("Update user info")) setSelect(null);
+    }, [select]);
 
     useEffect(() => {
         (async () => {
@@ -95,8 +102,8 @@ export default function UserPolicies() {
                                     {e.action}
                                 </th>
                             ))}
-                            <th scope="col" className="px-6 py-3 text-center"></th>
-                            <th scope="col" className="px-6 py-3 text-center"></th>
+                            {roles.includes("Update user info") && <th scope="col" className="px-6 py-3 text-center"></th>}
+                            {roles.includes("Update user info") && <th scope="col" className="px-6 py-3 text-center"></th>}
                         </tr>
                     </thead>
                     <tbody>
@@ -112,57 +119,63 @@ export default function UserPolicies() {
                                         )}
                                     </td>
                                 ))}
+                                {roles.includes("Update user info") && (
+                                    <td className="px-6 text-center">
+                                        <button
+                                            onClick={() => setSelect(null)}
+                                            className="bg-rose-300 hover:bg-rose-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center my-2"
+                                            style={{ visibility: "hidden" }}
+                                        >
+                                            {t("cancel")}
+                                        </button>
+                                    </td>
+                                )}
+                                {roles.includes("Update user info") && (
+                                    <td className="px-6 text-center">
+                                        <button
+                                            onClick={() => setSelect(row.id)}
+                                            className="bg-indigo-300 hover:bg-indigo-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center my-2"
+                                            style={{ display: row.id !== select ? "inherit" : "none" }}
+                                        >
+                                            <div style={{ width: "auto" }}>{t("change")}</div>
+                                        </button>
+                                        <button
+                                            onClick={(e) => setSelect(null)}
+                                            className="bg-green-300 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center my-2"
+                                            style={{ display: row.id === select ? "inherit" : "none" }}
+                                        >
+                                            <div style={{ width: "60px" }}>{t("done")}</div>
+                                        </button>
+                                    </td>
+                                )}
+                            </tr>
+                        ))}{" "}
+                        {roles.includes("Update user info") && (
+                            <tr className="bg-white dark:bg-gray-800 dark:border-gray-700">
+                                <td className="px-6 p-4"></td>
+                                {actions.map((e) => (
+                                    <td className="px-6 p-4" key={e.id}></td>
+                                ))}
                                 <td className="px-6 text-center">
                                     <button
-                                        onClick={() => setSelect(null)}
+                                        onClick={cancelChange}
                                         className="bg-rose-300 hover:bg-rose-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center my-2"
-                                        style={{ visibility: "hidden" }}
+                                        style={{ visibility: !isChange() ? "hidden" : "visible" }}
                                     >
                                         {t("cancel")}
                                     </button>
                                 </td>
                                 <td className="px-6 text-center">
                                     <button
-                                        onClick={() => setSelect(row.id)}
-                                        className="bg-indigo-300 hover:bg-indigo-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center my-2"
-                                        style={{ display: row.id !== select ? "inherit" : "none" }}
+                                        onClick={submit}
+                                        className="bg-green-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center my-2"
+                                        style={{ visibility: !isChange() ? "hidden" : "visible" }}
                                     >
-                                        <div style={{ width: "60px" }}>{t("change")}</div>
-                                    </button>
-                                    <button
-                                        onClick={(e) => setSelect(null)}
-                                        className="bg-green-300 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center my-2"
-                                        style={{ display: row.id === select ? "inherit" : "none" }}
-                                    >
-                                        <div style={{ width: "60px" }}>{t("done")}</div>
+                                        <div style={{ width: "60px" }}>{t("save")}</div>
                                     </button>
                                 </td>
                             </tr>
-                        ))}
-                        <tr className="bg-white dark:bg-gray-800 dark:border-gray-700">
-                            <td className="px-6 p-4"></td>
-                            {actions.map((e) => (
-                                <td className="px-6 p-4" key={e.id}></td>
-                            ))}
-                            <td className="px-6 text-center">
-                                <button
-                                    onClick={cancelChange}
-                                    className="bg-rose-300 hover:bg-rose-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center my-2"
-                                    style={{ visibility: !isChange() ? "hidden" : "visible" }}
-                                >
-                                    {t("cancel")}
-                                </button>
-                            </td>
-                            <td className="px-6 text-center">
-                                <button
-                                    onClick={submit}
-                                    className="bg-green-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center my-2"
-                                    style={{ visibility: !isChange() ? "hidden" : "visible" }}
-                                >
-                                    <div style={{ width: "60px" }}>{t("save")}</div>
-                                </button>
-                            </td>
-                        </tr>
+                        )}
                     </tbody>
                 </table>
             )}

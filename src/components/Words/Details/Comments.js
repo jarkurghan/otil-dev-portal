@@ -48,7 +48,7 @@ export default function WordComments({ word }) {
     }, []);
     return (
         <div className="max-w-7xl my-5 px-2 mx-auto">
-            <h1 className="text-3xl text-slate-800 font-bold dark:text-white my-2">{t("comments")}</h1>
+            <h1 className="text-3xl text-slate-800 font-bold dark:text-white my-2 capitalize">{t("comment")}</h1>
             <div>
                 {comments.map((comment, index) => (
                     <WordCommentItem comments={comments} className="my-4" comment={comment} like={like} setReplied={setReplied} key={index} />

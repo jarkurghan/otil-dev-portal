@@ -6,6 +6,8 @@ import { useEffect } from "react";
 import { useState } from "react";
 import lucatch from "../../assets/functions/catch";
 import { useTranslation } from "react-i18next";
+import { useSelector } from "react-redux";
+import { getRole } from "../../store/roles";
 
 export default function UsersTable({ setLoading }) {
     const [rows, setRows] = useState([]);
@@ -13,6 +15,7 @@ export default function UsersTable({ setLoading }) {
     const [data, setData] = useState([]);
     const [select, setSelect] = useState(null);
     const { t } = useTranslation();
+    const roles = useSelector(getRole);
 
     useEffect(() => {
         gets();
@@ -119,8 +122,8 @@ export default function UsersTable({ setLoading }) {
                             <th scope="col" className="px-6 py-3">
                                 <span className="mx-10 my-4"> {t("status")}</span>
                             </th>
-                            <th scope="col" className="px-6 py-3"></th>
-                            <th scope="col" className="px-6 py-3"></th>
+                            {roles.includes("Update user info") && <th scope="col" className="px-6 py-3"></th>}
+                            {roles.includes("Update user info") && <th scope="col" className="px-6 py-3"></th>}
                         </tr>
                     </thead>
                     <tbody>
@@ -227,46 +230,50 @@ export default function UsersTable({ setLoading }) {
                                         </select>
                                     )}
                                 </td>
-                                <td className="px-6 text-center">
-                                    <button
-                                        onClick={() => {
-                                            setSelect(null);
-                                            cancelChange();
-                                        }}
-                                        className="bg-rose-300 hover:bg-rose-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center my-2"
-                                        style={{ visibility: !isChange(ind) ? "hidden" : "visible" }}
-                                    >
-                                        {t("cancel")}
-                                    </button>
-                                </td>
-                                <td className="px-6 text-center">
-                                    {row.id === select ? (
+                                {roles.includes("Update user info") && (
+                                    <td className="px-6 text-center">
                                         <button
-                                            onClick={(e) => setSelect(null)}
-                                            className="bg-green-300 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center my-2"
-                                        >
-                                            <div style={{ width: "60px" }}>{t("done")}</div>
-                                        </button>
-                                    ) : isChange(ind) ? (
-                                        <button
-                                            onClick={(e) => {
+                                            onClick={() => {
                                                 setSelect(null);
-                                                submit(row);
+                                                cancelChange();
                                             }}
-                                            className="bg-green-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center my-2"
+                                            className="bg-rose-300 hover:bg-rose-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center my-2"
+                                            style={{ visibility: !isChange(ind) ? "hidden" : "visible" }}
                                         >
-                                            <div style={{ width: "60px" }}>{t("save")}</div>
+                                            {t("cancel")}
                                         </button>
-                                    ) : (
-                                        <button
-                                            onClick={(e) => setSelect(row.id)}
-                                            className="bg-indigo-300 hover:bg-indigo-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center my-2"
-                                            style={{ visibility: select !== null || isChange2() ? "hidden" : "visible" }}
-                                        >
-                                            <div style={{ width: "60px" }}>{t("change")}</div>
-                                        </button>
-                                    )}
-                                </td>
+                                    </td>
+                                )}
+                                {roles.includes("Update user info") && (
+                                    <td className="px-6 text-center">
+                                        {row.id === select ? (
+                                            <button
+                                                onClick={(e) => setSelect(null)}
+                                                className="bg-green-300 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center my-2"
+                                            >
+                                                <div style={{ width: "60px" }}>{t("done")}</div>
+                                            </button>
+                                        ) : isChange(ind) ? (
+                                            <button
+                                                onClick={(e) => {
+                                                    setSelect(null);
+                                                    submit(row);
+                                                }}
+                                                className="bg-green-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center my-2"
+                                            >
+                                                <div style={{ width: "60px" }}>{t("save")}</div>
+                                            </button>
+                                        ) : (
+                                            <button
+                                                onClick={(e) => setSelect(row.id)}
+                                                className="bg-indigo-300 hover:bg-indigo-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center my-2"
+                                                style={{ visibility: select !== null || isChange2() ? "hidden" : "visible" }}
+                                            >
+                                                <div style={{ width: "auto" }}>{t("change")}</div>
+                                            </button>
+                                        )}
+                                    </td>
+                                )}
                             </tr>
                         ))}
                     </tbody>

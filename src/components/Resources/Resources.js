@@ -8,8 +8,12 @@ import lucatch from "../../assets/functions/catch";
 import { useNavigate } from "react-router-dom";
 import FileSaver from "file-saver";
 import { useTranslation } from "react-i18next";
+import { getRole } from "../../store/roles";
+import { useSelector } from "react-redux";
 
 export default function Resources() {
+    const roles = useSelector(getRole);
+
     const navigate = useNavigate();
     const { t } = useTranslation();
     const [rows, setRows] = useState([]);
@@ -82,11 +86,13 @@ export default function Resources() {
             )}
 
             <div className="h-16 text-left">
-                <div className="inline-block w-fit h-fit my-3" onClick={() => navigate("/create-resource")}>
-                    <button className="bg-indigo-300 hover:bg-indigo-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center">
-                        {t("create resource")}
-                    </button>
-                </div>
+                {roles.includes("Create resource") && (
+                    <div className="inline-block w-fit h-fit my-3" onClick={() => navigate("/create-resource")}>
+                        <button className="bg-indigo-300 hover:bg-indigo-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center">
+                            {t("create resource")}
+                        </button>
+                    </div>
+                )}
             </div>
         </div>
     );
