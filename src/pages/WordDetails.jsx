@@ -48,7 +48,7 @@ const WordDetailsPage = () => {
             {(() => {
                 switch (content) {
                     case "details":
-                        return <WordInfo word={currenWord} />;
+                        return <WordInfo id={id} word={currenWord} />;
                     case "comments":
                         return <WordComments word={currenWord} />;
                     case "settings":

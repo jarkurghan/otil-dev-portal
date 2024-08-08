@@ -1,8 +1,27 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useTranslation } from "react-i18next";
+import getCookie from "../../../cookie/getCookie";
+import axios from "axios";
+import setCookie from "../../../cookie/setCookie";
 
-export default function WordInfo({ word }) {
+export default function WordInfo({ word, id }) {
     const { t } = useTranslation();
+
+    function wordViewCountIncrement() {
+        try {
+            const view = getCookie("wvc" + id);
+            if (!view) {
+                axios.post(`${process.env.REACT_APP_URL}/lugat/word/view`, { word: id });
+                setCookie("wvc" + id, true, 10);
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    useEffect(() => {
+        wordViewCountIncrement();
+    }, []);
 
     return (
         <div className="max-w-7xl my-5 px-2 mx-auto">
@@ -90,7 +109,7 @@ export default function WordInfo({ word }) {
                     <span className="sm:float-right">{t("view")}</span>
                 </div>
                 <div className="mb-2 sm:mb-0">
-                    <span>{+word.view?.count}</span>
+                    <span>{+word.view?.count || 1}</span>
                 </div>
                 <div className="font-bold mr-2">
                     <span className="sm:float-right">{t("comments")}</span>
