@@ -40,16 +40,16 @@ export default function WordInfo({ word }) {
                     </div>
                 )}
 
-                {word.example?.example && (
+                {word.example?.phrase && (
                     <div className="font-bold">
                         <span className="sm:float-right">{t("example")}</span>
                     </div>
                 )}
-                {word.example?.example && (
+                {word.example?.phrase && (
                     <div className="mb-2 sm:mb-0">
-                        <span>{word.example?.example}</span>
+                        <span>{word.example?.phrase}</span>
                         <div>
-                            {word.example?.example && `📚 ${word.example.resource_name} (${t("page number (1)")}${word.example.page}${t("page number (2)")})`}
+                            {word.example?.phrase && `📚 ${word.example.resource_name} (${t("page number (1)")}${word.example.page}${t("page number (2)")})`}
                         </div>
                     </div>
                 )}
