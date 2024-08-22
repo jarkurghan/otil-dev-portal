@@ -35,7 +35,7 @@ function App() {
                     <Header />
                     <ToastContainer />
                     <Routes>
-                        <Route path="/" element={<Navigate to="/users" />} />
+                        <Route path="/" element={<Navigate to="/words" />} />
                         {roles.includes("Create word") && <Route path="/new-word" element={<CreateWord />} />}
                         <Route path="/words" element={<WordsPage />} />
                         <Route path="/words/:id/:page" element={<WordDetailsPage />} />
@@ -44,6 +44,7 @@ function App() {
                         {roles.includes("Create resource") && <Route path="/create-resource" element={<CreateResource />} />}
                         {roles.includes("View users") && <Route path="/users" element={<Users />} />}
                         {roles.includes("Create user") && <Route path="/create-user" element={<CreateUserPage />} />}
+                        <Route path="/*" element={<Navigate to="/" />} />
                     </Routes>
                 </>
             ) : (
