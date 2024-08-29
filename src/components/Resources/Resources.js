@@ -66,7 +66,7 @@ export default function Resources() {
                                     <span className="mx-5 my-3">{row.name}</span>
                                 </td>
                                 <td className="px-1 sm:px-2 text-center sm:table-cell hidden">
-                                    <a href={`http://192.168.100.9:2006/otil/v1/api/resource/file/${row.id}`} target="_blank" rel="noopener noreferrer">
+                                    <a href={`${process.env.REACT_APP_URL}/otil/v1/api/resource/file/${row.id}`} target="_blank" rel="noopener noreferrer">
                                         <button className="bg-indigo-300 hover:bg-indigo-400 text-gray-800 font-bold py-2 px-6 rounded inline-flex items-center my-2">
                                             {t("view")}
                                         </button>
