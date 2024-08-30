@@ -44,7 +44,7 @@
     },
     "scripts": {
         "start": "react-scripts start",
-        "build": "set REACT_APP_URL='https://api0.virtual-lugat.uz'&& react-scripts build",
+        "build": "set REACT_APP_URL=https://api0.virtual-lugat.uz&& react-scripts build",
         "test": "react-scripts test",
         "eject": "react-scripts eject"
     },
