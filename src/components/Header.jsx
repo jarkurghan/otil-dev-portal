@@ -42,7 +42,7 @@ export default function Example() {
         x.push({ name: t("Resources"), to: "/resources", current: false });
         if (roles.includes("View users")) x.push({ name: t("Users"), to: "/users", current: false });
         setNavigation(x);
-    }, [roles]);
+    }, [roles, lang]);
 
     return (
         <>
