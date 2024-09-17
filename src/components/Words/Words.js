@@ -4,11 +4,14 @@ import { useEffect } from "react";
 import { useState } from "react";
 import lucatch from "../../assets/functions/catch";
 import Item from "./List/Item";
+import Pagination from "./Paginition";
 
 export default function Words() {
     // to-do: paginition qoldi
 
     const [words, setWords] = useState([]);
+    const [pages, setPages] = useState(10);
+    const [page, setPage] = useState(1);
 
     const getWords = async (page = 1) => {
         const query = "?page=" + page;
@@ -55,6 +58,7 @@ export default function Words() {
             {words.map((item) => (
                 <Item key={item.id} data={item} />
             ))}
+            {pages > 1 && <Pagination pages={pages} page={page} setPage={setPage} />}
         </div>
     );
 }
