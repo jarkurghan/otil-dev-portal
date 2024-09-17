@@ -7,23 +7,25 @@ import Item from "./List/Item";
 import Pagination from "./Paginition";
 
 export default function Words() {
-    // to-do: paginition qoldi
-
     const [words, setWords] = useState([]);
-    const [pages, setPages] = useState(10);
+    const [pages, setPages] = useState(1);
     const [page, setPage] = useState(1);
+    const count = 10;
 
-    const getWords = async (page = 1) => {
-        const query = "?page=" + page;
+    const getWords = async () => {
+        const query = "?page=" + page + "&count=" + count;
         await axios
             .get(`${process.env.REACT_APP_URL}/otil/v1/api/word/list${query}`, { headers: { Authorization: localStorage.getItem("token") } })
-            .then((res) => setWords(res.data))
+            .then((res) => {
+                setWords(res.data.data);
+                setPages(Math.ceil(res.data.count / count));
+            })
             .catch(lucatch);
     };
 
     useEffect(() => {
         getWords();
-    }, []);
+    }, [page]);
 
     useEffect(() => {
         (async () => {
