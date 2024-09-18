@@ -21,7 +21,7 @@ const CreateUser = () => {
     return (
         <div className="mx-2 sm:mx-auto max-w-4xl my-4 sm:my-8">
             <h1 className="mb-2 sm:mb-4 text-3xl font-bold leading-none tracking-tight text-gray-700 dark:text-white">Create User</h1>
-            <Formik initialValues={{ first_name: "", last_name: "", email: "", phone: "" }} onSubmit={submit}>
+            <Formik initialValues={{ first_name: "", last_name: "", email: "", phone: "", password: "" }} onSubmit={submit}>
                 <Form className="grid sm:grid-cols-2 sm:gap-6 grid-cols-1 gap-3">
                     <div>
                         <label htmlFor="first_name">{t("first name")}</label>
@@ -39,6 +39,11 @@ const CreateUser = () => {
                         <label htmlFor="phone">{t("phone")}</label>
                         <Field id="phone" name="phone" placeholder="+998772590100" type="phone" className="w-full py-1 px-2 my-1" />
                     </div>
+                    <div>
+                        <label htmlFor="password">{t("password")}</label>
+                        <Field id="password" name="password" placeholder="Qwer123#" type="password" className="w-full py-1 px-2 my-1" />
+                    </div>
+                    <div></div>
                     <div></div>
                     <div>
                         <button
