@@ -69,14 +69,14 @@ export default function UserPolicies() {
             setRank({ text: add[i].text, rank: `${(100 * i) / (del.length + add.length)}%` });
             delete add[i].text;
             await axios
-                .post(`${process.env.REACT_APP_URL}/otil/v1/api/user/action/add`, add[i], { headers: { Authorization: localStorage.getItem("token") } })
+                .post(`${process.env.REACT_APP_URL}/otil/v1/api/user/action`, add[i], { headers: { Authorization: localStorage.getItem("token") } })
                 .catch(lucatch);
         }
         for (let i = 0; i < del.length; i++) {
             setRank({ text: del[i].text, rank: `${(100 * (add.length + i)) / (del.length + add.length)}%` });
             delete del[i].text;
             await axios
-                .delete(`${process.env.REACT_APP_URL}/otil/v1/api/user/action/del`, { data: del[i], headers: { Authorization: localStorage.getItem("token") } })
+                .delete(`${process.env.REACT_APP_URL}/otil/v1/api/user/action`, { data: del[i], headers: { Authorization: localStorage.getItem("token") } })
                 .catch(lucatch);
         }
         setRank({ text: `data is being updated`, rank: "100%" });
