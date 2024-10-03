@@ -1,5 +1,3 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable react-hooks/exhaustive-deps */
 import React from "react";
 import Avatar from "../../../assets/Icons/Avatar";
 import stringToColor from "../../../assets/functions/stringToColor";

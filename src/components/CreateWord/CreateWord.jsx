@@ -1,5 +1,3 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react";
 import setCookie from "../../cookie/setCookie";
 import InputWord from "../../assets/inputs/word";

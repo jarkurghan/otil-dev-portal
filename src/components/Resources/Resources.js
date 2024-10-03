@@ -1,5 +1,3 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable react-hooks/exhaustive-deps */
 import React from "react";
 import axios from "axios";
 import { useEffect } from "react";

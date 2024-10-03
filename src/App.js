@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import { Route, Routes, useNavigate, Navigate } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
 import Header from "./components/Header";
