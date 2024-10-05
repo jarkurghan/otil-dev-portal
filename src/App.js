@@ -16,6 +16,7 @@ import WordDetailsPage from "./pages/WordDetails";
 import CreateUserPage from "./pages/CreateUser";
 import { useDispatch, useSelector } from "react-redux";
 import { getRole, setRole } from "./store/roles";
+import MyProfilePage from "./pages/MyProfile";
 
 function App() {
     const token = localStorage.getItem("token");
@@ -44,6 +45,7 @@ function App() {
                         {roles.includes("Create resource") && <Route path="/create-resource" element={<CreateResource />} />}
                         {roles.includes("View users") && <Route path="/users" element={<Users />} />}
                         {roles.includes("Create user") && <Route path="/create-user" element={<CreateUserPage />} />}
+                        <Route path="/profile" element={<MyProfilePage />} />
                         <Route path="/*" element={<Navigate to="/" />} />
                     </Routes>
                 </>
