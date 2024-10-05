@@ -1,5 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-/* eslint-disable no-unused-vars */
 import React, { useState } from "react";
 import NewWord from "../components/CreateWord/NewWord";
 import axios from "axios";

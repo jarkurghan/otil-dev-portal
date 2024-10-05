@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import React from "react";
 import cn from "classnames";
 import { useNavigate } from "react-router-dom";

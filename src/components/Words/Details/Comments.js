@@ -1,5 +1,3 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable react-hooks/exhaustive-deps */
 import React from "react";
 import InputCommentary from "../../../assets/inputs/commentary";
 import axios from "axios";

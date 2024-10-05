@@ -1,4 +1,3 @@
-/* eslint-disable eqeqeq */
 export default function getCookie(cname) {
     let name = cname + "=";
     let ca = document.cookie.split(";");

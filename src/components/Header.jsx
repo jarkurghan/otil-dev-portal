@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import { Fragment, useEffect, useState } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
@@ -42,7 +41,7 @@ export default function Example() {
         x.push({ name: t("Resources"), to: "/resources", current: false });
         if (roles.includes("View users")) x.push({ name: t("Users"), to: "/users", current: false });
         setNavigation(x);
-    }, [roles]);
+    }, [roles, lang]);
 
     return (
         <>

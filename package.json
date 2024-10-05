@@ -50,6 +50,7 @@
     },
     "eslintConfig": {
         "rules": {
+            "eqeqeq": "off",
             "no-unused-vars": "off",
             "array-callback-return": "off",
             "react-hooks/exhaustive-deps": "off",

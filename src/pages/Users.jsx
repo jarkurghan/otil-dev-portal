@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import React from "react";
 import UserPolicies from "../components/User/UserPolicy";
 import { useState } from "react";
