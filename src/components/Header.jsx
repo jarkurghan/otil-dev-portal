@@ -180,7 +180,9 @@ export default function Example() {
                                             <Avatar sx={{ width: 24, height: 24 }} />
                                         </div>
                                         <div className="ml-3">
-                                            <div className="text-base font-medium leading-none text-white">{localStorage.getItem("name")}</div>
+                                            <div className="text-base font-medium leading-none text-white mb-1 capitalize">
+                                                {localStorage.getItem("first_name")} {localStorage.getItem("last_name")}
+                                            </div>
                                             <div className="text-sm font-medium leading-none text-gray-400">{localStorage.getItem("email")}</div>
                                         </div>
                                         {localStorage.getItem("role") === "4" && (

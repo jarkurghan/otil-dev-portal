@@ -19,7 +19,7 @@ const UpdateMyProfile = () => {
 
     return (
         <div className="mx-2 sm:mx-auto max-w-4xl my-4 sm:my-8">
-            <h1 className="mb-2 sm:mb-4 text-3xl font-bold leading-none tracking-tight text-gray-700 dark:text-white">Update My Profile</h1>
+            <h1 className="mb-2 sm:mb-4 text-2xl font-bold leading-none tracking-tight text-gray-700 dark:text-white uppercase">{t("update profile")}</h1>
             <Formik initialValues={{ first_name: "", last_name: "", email: "", phone: "", password: "" }} onSubmit={submit}>
                 <Form className="grid sm:grid-cols-2 sm:gap-6 grid-cols-1 gap-3">
                     <div>
