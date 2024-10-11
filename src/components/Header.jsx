@@ -1,5 +1,5 @@
 import { Fragment, useEffect, useState } from "react";
-import { Disclosure, DisclosureButton, DisclosurePanel, useClose } from "@headlessui/react";
+import { Disclosure, DisclosureButton, DisclosurePanel } from "@headlessui/react";
 import { Transition, Menu, MenuButton, MenuItems } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { NavLink, useNavigate } from "react-router-dom";
@@ -20,7 +20,9 @@ export default function Example() {
     const navigate = useNavigate();
     const roles = useSelector(getRole);
 
-    let close = useClose();
+    const close = () => {
+        document.getElementById("menuToggle").click();
+    };
 
     // const [lang, setlang] = useState("uz");
     const [lang, setlang] = useState(Cookies.get("i18next"));
@@ -131,7 +133,10 @@ export default function Example() {
                                         </div>
                                     </div>
                                     <div className="-mr-2 flex md:hidden">
-                                        <DisclosureButton className="inline-flex items-center justify-center rounded-md bg-gray-800 p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
+                                        <DisclosureButton
+                                            id="menuToggle"
+                                            className="inline-flex items-center justify-center rounded-md bg-gray-800 p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
+                                        >
                                             {open ? (
                                                 <XMarkIcon className="block h-6 w-6" aria-hidden="true" />
                                             ) : (
@@ -148,6 +153,7 @@ export default function Example() {
                                         <NavLink
                                             key={item.name}
                                             to={item.to}
+                                            onClick={close}
                                             className="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium"
                                         >
                                             {item.name}
@@ -191,6 +197,7 @@ export default function Example() {
                                     <div className="mt-3 space-y-1 px-2">
                                         <NavLink
                                             to="/profile"
+                                            onClick={close}
                                             className="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white"
                                         >
                                             {t("My Profile")}
