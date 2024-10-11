@@ -39,7 +39,7 @@ export default function Resources() {
     };
 
     return (
-        <div className="2xl:mx-40 xl:mx-20 py-6 sm:px-6 lg:px-8 relative overflow-x-auto">
+        <div className="2xl:mx-40 xl:mx-20 py-6 sm:px-6 lg:px-8 relative overflow-x-auto mx-2">
             {rows.length > 0 && (
                 <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400 mb-10">
                     <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400 sm:table-header-group hidden">
