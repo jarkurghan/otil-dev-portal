@@ -44,9 +44,7 @@
     },
     "scripts": {
         "start": "react-scripts start",
-        "build": "set REACT_APP_URL=https://api0.virtual-lugat.uz&& react-scripts build",
-        "test": "react-scripts test",
-        "eject": "react-scripts eject"
+        "build": "react-scripts build"
     },
     "eslintConfig": {
         "rules": {
@@ -76,6 +74,7 @@
         ]
     },
     "devDependencies": {
+        "cross-env": "^7.0.3",
         "tailwindcss": "^3.3.2"
     }
 }

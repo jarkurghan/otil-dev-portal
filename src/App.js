@@ -24,6 +24,7 @@ function App() {
     const roles = useSelector(getRole);
 
     useEffect(() => {
+        console.log('Current NODE_ENV:', process.env.NODE_ENV);
         navigate(`${window.location.pathname}`);
         if (token) dispatch(setRole((localStorage.getItem("roles") || "").split(",")));
     }, []);
