@@ -1,5 +1,6 @@
 import { Fragment, useEffect, useState } from "react";
-import { Disclosure, Menu, Transition } from "@headlessui/react";
+import { Disclosure, DisclosureButton, DisclosurePanel } from "@headlessui/react";
+import { Transition, Menu, MenuButton, MenuItems } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { NavLink, useNavigate } from "react-router-dom";
 import Avatar from "@mui/material/Avatar";
@@ -18,6 +19,10 @@ export default function Example() {
     const { t, i18n } = useTranslation();
     const navigate = useNavigate();
     const roles = useSelector(getRole);
+
+    const close = () => {
+        document.getElementById("menuToggle").click();
+    };
 
     // const [lang, setlang] = useState("uz");
     const [lang, setlang] = useState(Cookies.get("i18next"));
@@ -83,14 +88,6 @@ export default function Example() {
                                             )}
 
                                             <div>
-                                                {/* <select value={lang} size="small" onChange={onLanguage}>
-                                                    <option value="en">
-                                                        <img style={{ width: "23px" }} src={en} alt="en" />
-                                                    </option>
-                                                    <option value="uz">
-                                                        <img style={{ width: "23px" }} src={uz} alt="uz" />
-                                                    </option>
-                                                </select> */}
                                                 <Select value={lang} size="small" onChange={onLanguage} className="bg-slate-300 mr-4">
                                                     <MenuItem value="uz">
                                                         <img style={{ width: "23px" }} src={uz} alt="uz" />
@@ -106,9 +103,9 @@ export default function Example() {
                                             {/* Profile dropdown */}
                                             <Menu as="div" className="relative ml-3">
                                                 <div>
-                                                    <Menu.Button className="flex max-w-xs items-center rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
+                                                    <MenuButton className="flex max-w-xs items-center rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
                                                         <Avatar sx={{ width: 24, height: 24 }} />
-                                                    </Menu.Button>
+                                                    </MenuButton>
                                                 </div>
                                                 <Transition
                                                     as={Fragment}
@@ -119,45 +116,63 @@ export default function Example() {
                                                     leaveFrom="transform opacity-100 scale-100"
                                                     leaveTo="transform opacity-0 scale-95"
                                                 >
-                                                    <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-                                                        <Menu.Item>
+                                                    <MenuItems className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                                                        <MenuItem>
                                                             <NavLink to="/profile" className="block px-4 py-2 text-sm text-gray-700">
                                                                 {t("My Profile")}
                                                             </NavLink>
-                                                        </Menu.Item>
-                                                        <Menu.Item>
+                                                        </MenuItem>
+                                                        <MenuItem>
                                                             <NavLink to="/sign-out" onClick={logout} className="block px-4 py-2 text-sm text-gray-700">
                                                                 {t("Log Out")}
                                                             </NavLink>
-                                                        </Menu.Item>
-                                                    </Menu.Items>
+                                                        </MenuItem>
+                                                    </MenuItems>
                                                 </Transition>
                                             </Menu>
                                         </div>
                                     </div>
                                     <div className="-mr-2 flex md:hidden">
-                                        <Disclosure.Button className="inline-flex items-center justify-center rounded-md bg-gray-800 p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
+                                        <DisclosureButton
+                                            id="menuToggle"
+                                            className="inline-flex items-center justify-center rounded-md bg-gray-800 p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
+                                        >
                                             {open ? (
                                                 <XMarkIcon className="block h-6 w-6" aria-hidden="true" />
                                             ) : (
                                                 <Bars3Icon className="block h-6 w-6" aria-hidden="true" />
                                             )}
-                                        </Disclosure.Button>
+                                        </DisclosureButton>
                                     </div>
                                 </div>
                             </div>
 
-                            <Disclosure.Panel className="md:hidden">
+                            <DisclosurePanel className="md:hidden">
                                 <div className="space-y-1 px-2 pb-3 pt-2 sm:px-3">
                                     {navigation.map((item) => (
                                         <NavLink
                                             key={item.name}
                                             to={item.to}
+                                            onClick={close}
                                             className="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium"
                                         >
                                             {item.name}
                                         </NavLink>
                                     ))}
+                                </div>
+                                <div className="border-t border-gray-700 pb-3 px-5 pt-4 flex items-center justify-between">
+                                    <div className="text-base font-medium text-white">{t("Change language")}</div>
+                                    <Select value={lang} size="small" onChange={onLanguage} className="bg-slate-300">
+                                        <MenuItem value="uz">
+                                            <img style={{ width: "23px" }} src={uz} alt="uz" />
+                                        </MenuItem>
+                                        <MenuItem value="ru">
+                                            <img style={{ width: "23px" }} src={ru} alt="ru" />
+                                        </MenuItem>
+                                        <MenuItem value="en">
+                                            <img style={{ width: "23px" }} src={en} alt="en" />
+                                        </MenuItem>
+                                    </Select>
                                 </div>
                                 <div className="border-t border-gray-700 pb-3 pt-4">
                                     <div className="flex items-center px-5">
@@ -165,7 +180,9 @@ export default function Example() {
                                             <Avatar sx={{ width: 24, height: 24 }} />
                                         </div>
                                         <div className="ml-3">
-                                            <div className="text-base font-medium leading-none text-white">{localStorage.getItem("name")}</div>
+                                            <div className="text-base font-medium leading-none text-white mb-1 capitalize">
+                                                {localStorage.getItem("first_name")} {localStorage.getItem("last_name")}
+                                            </div>
                                             <div className="text-sm font-medium leading-none text-gray-400">{localStorage.getItem("email")}</div>
                                         </div>
                                         {localStorage.getItem("role") === "4" && (
@@ -181,6 +198,13 @@ export default function Example() {
                                     </div>
                                     <div className="mt-3 space-y-1 px-2">
                                         <NavLink
+                                            to="/profile"
+                                            onClick={close}
+                                            className="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white"
+                                        >
+                                            {t("My Profile")}
+                                        </NavLink>
+                                        <NavLink
                                             to="sign-out"
                                             onClick={logout}
                                             className="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white"
@@ -189,7 +213,7 @@ export default function Example() {
                                         </NavLink>
                                     </div>
                                 </div>
-                            </Disclosure.Panel>
+                            </DisclosurePanel>
                         </>
                     )}
                 </Disclosure>

@@ -48,6 +48,9 @@ export default function Login() {
                 dispatch(setRole(res.data.actions));
                 localStorage.setItem("roles", res.data?.actions);
                 localStorage.setItem("token", res.data?.token);
+                localStorage.setItem("first_name", res.data?.profile.first_name);
+                localStorage.setItem("last_name", res.data?.profile.last_name);
+                localStorage.setItem("email", res.data?.profile.email);
                 localStorage.setItem("user_id", event.user_id);
                 setLoading(false);
                 // window.location = "/";

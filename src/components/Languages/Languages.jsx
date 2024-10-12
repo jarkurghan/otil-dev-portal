@@ -87,7 +87,7 @@ export default function Example() {
     return (
         <div>
             <div className="2xl:mx-40 xl:mx-20 py-6 sm:px-6 lg:px-8">
-                <div className="mx-auto max-w-none">
+                <div className="mx-2">
                     <div className="overflow-hidden bg-white shadow sm:rounded-lg">
                         <ul className="divide-y divide-gray-200">
                             {rows.map((e) => (
@@ -97,40 +97,6 @@ export default function Example() {
                     </div>
                 </div>
                 <div className="text-gray-700 mx-2">
-                    {/* <div className="sm:flex justify-between">
-                        <div>
-                            <h1 className="text-6xl font-semibold capitalize">{row?.language}</h1>
-                            <h2 className="text-lg md:text-xl capitalize">{row?.description}</h2>
-                        </div>
-                        <div>Starts</div>
-                    </div> */}
-
-                    {/*  <div className="my-8">
-                            <h1 className="text-3xl font-semibold capitalize">Statistika</h1>
-                            <div className="flex items-center mt-4">
-                                <span className="text-sm font-medium text-blue-600 dark:text-blue-500 hover:underline">8 star</span>
-                                <div className="w-2/4 h-5 mx-4 bg-gray-200 rounded dark:bg-gray-700">
-                                    <div className="h-5 bg-yellow-300 rounded" style={{ width: "70%" }}></div>
-                                </div>
-                                <span className="text-sm font-medium text-gray-500 dark:text-gray-400">70%</span>
-                            </div>
-                            <div className="flex items-center mt-4">
-                                <span className="text-sm font-medium text-blue-600 dark:text-blue-500 hover:underline">8 star</span>
-                                <div className="w-2/4 h-5 mx-4 bg-gray-200 rounded dark:bg-gray-700">
-                                    <div className="h-5 bg-yellow-300 rounded" style={{ width: "70%" }}></div>
-                                </div>
-                                <span className="text-sm font-medium text-gray-500 dark:text-gray-400">70%</span>
-                            </div>
-                            <div className="flex items-center mt-4">
-                                <span className="text-sm font-medium text-blue-600 dark:text-blue-500 hover:underline">8 star</span>
-                                <div className="w-2/4 h-5 mx-4 bg-gray-200 rounded dark:bg-gray-700">
-                                    <div className="h-5 bg-yellow-300 rounded" style={{ width: "70%" }}></div>
-                                </div>
-                                <span className="text-sm font-medium text-gray-500 dark:text-gray-400">70%</span>
-                            </div>
-                        </div>
-                    */}
-
                     {row && (
                         <div className="mt-8 mb-16">
                             <h1 className="text-3xl font-semibold">{t("part of speech")}</h1>
